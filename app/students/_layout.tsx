@@ -28,8 +28,11 @@ const StackLayout = () => {
         },
         tabBarActiveTintColor: "#ab13ed",
         tabBarStyle: {
-          height: 62,
-          paddingHorizontal: 8,
+          height: 64,
+          paddingHorizontal: 10,
+        },
+        tabBarItemStyle: {
+          paddingVertical: 10,
         },
         tabBarLabelStyle: {
           fontSize: 12,
@@ -40,7 +43,7 @@ const StackLayout = () => {
       <Tabs.Screen
         name="index"
         options={{
-          href: "../",
+          href: "/",
           headerTitle: (props) => <NexoFullIcon fill={"#ab13ed"} {...props} />,
           tabBarIcon: (props) => (
             <NexoIconEmpty
@@ -49,7 +52,7 @@ const StackLayout = () => {
             />
           ),
           tabBarLabel: "Nexo",
-          tabBarLabelStyle: { paddingBottom: 5 },
+
           tabBarActiveTintColor: "#ab13ed",
           headerLeft: (props) => (
             <TouchableOpacity onPress={() => router.back()}>
@@ -70,12 +73,11 @@ const StackLayout = () => {
         options={{
           href: "/students/carreers",
           headerTitle: "Carreras",
-          headerRight: (props) => <NexoIcon {...props} />,
+          headerRight: (props) => <NexoIconEmpty {...props} />,
           headerRightContainerStyle: {
             paddingRight: 12,
           },
           tabBarLabel: "Carreras",
-          tabBarLabelStyle: { paddingBottom: 5 },
           tabBarIcon: (props) => (
             <CarreersIcon
               fill={props.focused ? "#ab13ed" : "#000"}
@@ -89,12 +91,11 @@ const StackLayout = () => {
         options={{
           href: "/students/headings",
           headerTitle: "Rubros ",
-          headerRight: (props) => <NexoIcon {...props} />,
+          headerRight: (props) => <NexoIconEmpty {...props} />,
           headerRightContainerStyle: {
             paddingRight: 12,
           },
           tabBarLabel: "Rubros",
-          tabBarLabelStyle: { paddingBottom: 5 },
           tabBarIcon: (props) => (
             <HeadingsIcon
               fill={props.focused ? "#ab13ed" : "#000"}
@@ -108,12 +109,11 @@ const StackLayout = () => {
         options={{
           href: "/students/sugerences",
           headerTitle: "Sugerencias",
-          headerRight: (props) => <NexoIcon {...props} />,
+          headerRight: (props) => <NexoIconEmpty {...props} />,
           headerRightContainerStyle: {
             paddingRight: 12,
           },
           tabBarLabel: "Sugerencias",
-          tabBarLabelStyle: { paddingBottom: 5 },
           tabBarIcon: (props) => (
             <SugerenceIcon
               fill={props.focused ? "#ab13ed" : "#000"}
