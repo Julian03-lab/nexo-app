@@ -10,28 +10,16 @@ const LoginPage = () => {
         <Image
           source={require("../../assets/images/derechos-y-obligaciones.png")}
           style={{
-            width: 440,
-            height: 290,
-            marginBottom: 44,
+            width: "100%",
+            height: 212, // 212
           }}
           contentFit="cover"
+          contentPosition={"top"}
         />
         <View style={styles.textContainer}>
-          <Text
-            style={{
-              fontSize: 24,
-              ...styles.textStyles,
-            }}
-          >
-            Da el primer paso
-          </Text>
-          <Text
-            style={{
-              fontSize: 15,
-              ...styles.textStyles,
-            }}
-          >
-            Revisa cada una de las opciones que tenemos para ti
+          <Text style={styles.title}>¡¡Da el primer paso!!</Text>
+          <Text style={styles.subtitle}>
+            Revisa cada una de las opciones que tenemos para vos
           </Text>
         </View>
         <ImageSlider />
@@ -50,13 +38,21 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   textContainer: {
-    paddingLeft: 24,
-    paddingRight: 24,
-    marginBottom: 16,
-    width: "85%",
+    flex: 1,
+    alignItems: "center",
+    paddingVertical: 16,
+    paddingHorizontal: 24,
   },
-  textStyles: {
+  title: {
     fontWeight: "700",
-    letterSpacing: 0.1,
+    fontSize: 20,
+    color: "#ab13ed",
+  },
+  subtitle: {
+    fontWeight: "400",
+    letterSpacing: 0.02,
+    color: "#000",
+    fontSize: 16,
+    textAlign: "center",
   },
 });

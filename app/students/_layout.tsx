@@ -1,6 +1,10 @@
 import React from "react";
 import { Tabs, useRouter } from "expo-router";
-import { NexoFullIcon, NexoIcon } from "../../assets/icons/nexo-icon";
+import {
+  NexoFullIcon,
+  NexoIcon,
+  NexoIconEmpty,
+} from "../../assets/icons/nexo-icon";
 import {
   BackArrowIcon,
   CarreersIcon,
@@ -29,7 +33,6 @@ const StackLayout = () => {
         },
         tabBarLabelStyle: {
           fontSize: 12,
-          display: "none",
         },
         // headerShown: false,
       }}
@@ -40,13 +43,13 @@ const StackLayout = () => {
           href: "../",
           headerTitle: (props) => <NexoFullIcon fill={"#ab13ed"} {...props} />,
           tabBarIcon: (props) => (
-            <NexoFullIcon
-              width={69}
-              height={43}
-              fill={props.focused ? "#ab13ed" : "#000"}
+            <NexoIconEmpty
+              fill={props.focused ? "#ab13ed" : "#767575"}
               {...props}
             />
           ),
+          tabBarLabel: "Nexo",
+          tabBarLabelStyle: { paddingBottom: 5 },
           tabBarActiveTintColor: "#ab13ed",
           headerLeft: (props) => (
             <TouchableOpacity onPress={() => router.back()}>
@@ -72,7 +75,7 @@ const StackLayout = () => {
             paddingRight: 12,
           },
           tabBarLabel: "Carreras",
-          tabBarLabelStyle: { display: "flex", paddingBottom: 5 },
+          tabBarLabelStyle: { paddingBottom: 5 },
           tabBarIcon: (props) => (
             <CarreersIcon
               fill={props.focused ? "#ab13ed" : "#000"}
@@ -91,7 +94,7 @@ const StackLayout = () => {
             paddingRight: 12,
           },
           tabBarLabel: "Rubros",
-          tabBarLabelStyle: { display: "flex", paddingBottom: 5 },
+          tabBarLabelStyle: { paddingBottom: 5 },
           tabBarIcon: (props) => (
             <HeadingsIcon
               fill={props.focused ? "#ab13ed" : "#000"}
@@ -110,7 +113,7 @@ const StackLayout = () => {
             paddingRight: 12,
           },
           tabBarLabel: "Sugerencias",
-          tabBarLabelStyle: { display: "flex", paddingBottom: 5 },
+          tabBarLabelStyle: { paddingBottom: 5 },
           tabBarIcon: (props) => (
             <SugerenceIcon
               fill={props.focused ? "#ab13ed" : "#000"}
