@@ -11,7 +11,7 @@ import {
   HeadingsIcon,
   SugerenceIcon,
 } from "../../assets/icons/icons";
-import { TouchableHighlight, TouchableOpacity } from "react-native";
+import { TouchableOpacity } from "react-native";
 
 const StackLayout = () => {
   const router = useRouter();
@@ -71,8 +71,21 @@ const StackLayout = () => {
       <Tabs.Screen
         name="carreers"
         options={{
-          href: "/students/carreers",
+          href: "/students/carreers/",
           headerTitle: "Carreras",
+          headerTitleStyle: {
+            fontWeight: "600",
+            color: "#767575",
+            fontSize: 20,
+          },
+          headerLeft: (props) => (
+            <TouchableOpacity onPress={() => router.back()}>
+              <BackArrowIcon />
+            </TouchableOpacity>
+          ),
+          headerLeftContainerStyle: {
+            paddingLeft: 24,
+          },
           headerRight: (props) => <NexoIconEmpty {...props} />,
           headerRightContainerStyle: {
             paddingRight: 12,
