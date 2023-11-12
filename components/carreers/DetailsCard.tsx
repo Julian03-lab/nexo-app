@@ -7,26 +7,28 @@ import {
   View,
 } from "react-native";
 import React from "react";
-import { Image } from "expo-image";
+import { Image, ImageContentPosition } from "expo-image";
 import { useRouter } from "expo-router";
 
 const CarreerCard = ({
   id,
   name,
   image,
+  position,
+  route,
 }: {
   id: number | string;
   name: string;
   image: any;
+  position?: ImageContentPosition;
+  route: string;
 }) => {
   const router = useRouter();
   return (
-    <Pressable
-      style={styles.container}
-      onPress={() => router.push(`/students/carreers/${id}`)}
-    >
+    <Pressable style={styles.container} onPress={() => router.push(route + id)}>
       <Image
         source={image}
+        contentPosition={position || "top"}
         style={{
           width: "100%",
           height: 150,

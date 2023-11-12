@@ -86,7 +86,7 @@ const StackLayout = () => {
           headerLeftContainerStyle: {
             paddingLeft: 24,
           },
-          headerRight: (props) => <NexoIconEmpty {...props} />,
+          headerRight: (props) => <NexoIcon fill={"#ab13ed"} {...props} />,
           headerRightContainerStyle: {
             paddingRight: 12,
           },
@@ -104,7 +104,15 @@ const StackLayout = () => {
         options={{
           href: "/students/headings",
           headerTitle: "Rubros ",
-          headerRight: (props) => <NexoIconEmpty {...props} />,
+          headerRight: (props) => <NexoIcon fill={"#ab13ed"} {...props} />,
+          headerLeft: (props) => (
+            <TouchableOpacity onPress={() => router.back()}>
+              <BackArrowIcon />
+            </TouchableOpacity>
+          ),
+          headerLeftContainerStyle: {
+            paddingLeft: 24,
+          },
           headerRightContainerStyle: {
             paddingRight: 12,
           },
@@ -122,7 +130,15 @@ const StackLayout = () => {
         options={{
           href: "/students/sugerences",
           headerTitle: "Sugerencias",
-          headerRight: (props) => <NexoIconEmpty {...props} />,
+          headerRight: (props) => <NexoIcon fill={"#ab13ed"} {...props} />,
+          headerLeft: (props) => (
+            <TouchableOpacity onPress={() => router.back()}>
+              <BackArrowIcon />
+            </TouchableOpacity>
+          ),
+          headerLeftContainerStyle: {
+            paddingLeft: 24,
+          },
           headerRightContainerStyle: {
             paddingRight: 12,
           },

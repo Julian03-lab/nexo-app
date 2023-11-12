@@ -26,12 +26,10 @@ const CarrerInfo = () => {
   const layout = useWindowDimensions();
   const carreer = carreersList.find((carreer) => carreer.id === Number(id));
 
-  const [selectedCarreer, setSelectedCarreer] = React.useState(carreer);
-
   const renderScene = ({ route }) => {
     switch (route.key) {
       case "information":
-        return <Information carreerInfo={selectedCarreer.info} />;
+        return <Information carreerInfo={carreer.info} />;
       case "universities":
         return <Universities />;
       default:
@@ -54,11 +52,6 @@ const CarrerInfo = () => {
       renderTabBar={renderTabBar}
     />
   );
-  //   return (
-  //     <View>
-  //       <Text>CarrerInfo: {id}</Text>
-  //     </View>
-  //   );
 };
 
 export default CarrerInfo;

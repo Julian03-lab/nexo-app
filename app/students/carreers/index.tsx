@@ -1,6 +1,6 @@
-import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
+import { SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
 import React from "react";
-import CarreerCard from "../../../components/carreers/CarreerCard";
+import CarreerCard from "../../../components/carreers/DetailsCard";
 import { carreersList } from "../../../assets/info/carreersList";
 
 const carreers = () => {
@@ -10,6 +10,7 @@ const carreers = () => {
         <View style={styles.carreerList}>
           {carreersList.map((carreer) => (
             <CarreerCard
+              route="/students/carreers/"
               key={carreer.id}
               id={carreer.id}
               name={carreer.info.title}

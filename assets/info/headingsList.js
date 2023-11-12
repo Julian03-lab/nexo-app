@@ -1,0 +1,98 @@
+export const headingsList = [
+  {
+    id: 1,
+    name: "Analista funcional",
+    info: "Un analista funcional es un encargado de comprender las necesidades de una empresa o cliente y traducirlas en requerimientos funcionales para desarrollar soluciones informáticas. El analista funcional trabaja en conjunto con los gerentes, usuarios finales y desarrolladores de software. Su trabajo implica realizar investigaciones, recopilar información y analizar el rendimiento de sistemas existentes. Además, el analista funcional debe documentar y comunicar claramente los requerimientos a los equipos de desarrollo, asegurando que se comprendan adecuadamente Para prepararse para un trabajo de analista funcional, el estudiante puede considerar estudiar cualquier carrera tecnológica para adquirir habilidades técnicas relevantes, como la comprensión de sistemas informáticos, bases de datos y conceptos de programación. Además de una carrera universitaria, existen cursos en análisis funcional. Estos cursos pueden ser de corta duración y se centran en brindar las habilidades y conocimientos necesarios para trabajar en este rubro.",
+    image: require("../images/headings/analistfunc.png"),
+  },
+  {
+    id: 2,
+    name: "Administrador de redes",
+    info: "",
+    image: require("../images/headings/analistfunc.png"),
+  },
+  {
+    id: 3,
+    name: "Analista de datos",
+    info: "El analista de datos o Data Analyst es la persona encargada de recopilar, filtrar e interpretar bases de datos para ayudar a que las empresas tomen decisiones.  Un analista de datos se dedica a examinar y analizar grandes cantidades de datos para encontrar patrones, tendencias y relaciones. Utiliza herramientas como Hojas de cálculo,SQL, Power BI y QlikView, entre otras cosas. y técnicas especializadas para organizar, limpiar y visualizar los datos de manera comprensible. El objetivo principal del analista de datos es proporcionar información y recomendaciones basadas en los datos para respaldar la toma de decisiones estratégicas en una organización. Los analistas de datos utilizan habilidades en matemáticas, estadísticas y programación para trabajar con datos y extraer información significativa. También pueden colaborar con otros equipos, como el de marketing o el de investigación, para identificar oportunidades de mejora y optimización basadas en los hallazgos obtenidos del análisis de datos. (LISTA)uno,dos,tres(LISTA)",
+    image: require("../images/headings/analistfunc.png"),
+  },
+  {
+    id: 4,
+    name: "Arquitecto en software",
+    info: `<p style="color: #000; font-size:16px; padding: 0;">Un arquitecto de software es un profesional altamente especializado en el diseño y planificación de sistemas de software. Es responsable de definir la estructura de un software, asegurando que el sistema cumpla con ciertos requisitos técnicos. Las funciones de un arquitecto de software son muy similares a los aspectos de la arquitectura, pero enfocado a aspectos técnicos e informáticos. En el caso de un arquitecto de software, sus funciones más comunes son: </p><ul style="color: #000; font-size:16px; margin: 0;"><li>Seleccionar la tecnología y lenguajes adecuados para el sistema.</li><li>Diseñar la arquitectura del software.</li><li>Planificar y supervisar el desarrollo.</li><li>Asegurar que el software tenga todas las garantías de calidad.</li><li>Resuelve problemas técnicos.</li><li>Evaluar y optimizar el rendimiento del sistema.</li></ul><p style="color: #000; font-size:16px; padding: 0;">Para ser un arquitecto de software deberás conocer múltiples lenguajes de programación. Tener un amplio conocimiento técnico en el desarrollo de software será imprescindible, como conocer las diferentes tecnologías, herramientas, frameworks, etc. 5 diferencias entre Arquitecto de software y desarrollador:   El ARQUITECTO DE SOFTWARE : Conocimiento más amplio, se centra en el diseño del sistema software, Responsable en establecer las pautas, es el líder. Tiene un nivel más alto de dificultad, pues debe diseñar la estructura general.La toma de decisiones es más amplia, ya que establece las directrices del diseño. Mayor influencia en el proyecto en general. EL DESARROLLADOR: Conocimiento más técnico, responsable de implementar y programar el sistema, Se centra en escribir el código y hacer que el software funcione de manera efectiva. El nivel de dificultad se reduce ya que trabaja en detalles más específicos.La toma de decisiones se reduce ya que su función es más detallada.No tiene influencia, pues simplemente realiza la actividad que se le asigna</p>`,
+    image: require("../images/headings/analistfunc.png"),
+  },
+  {
+    id: 5,
+    name: "Administrador de base de datos",
+    info: "",
+    image: require("../images/headings/analistfunc.png"),
+  },
+  {
+    id: 6,
+    name: "Ciberseguridad",
+    info: "",
+    image: require("../images/headings/analistfunc.png"),
+  },
+  {
+    id: 7,
+    name: "Desarrollador de aplicaciones móviles",
+    info: "",
+    image: require("../images/headings/analistfunc.png"),
+  },
+  {
+    id: 8,
+    name: "Desarrollador web",
+    info: "",
+    image: require("../images/headings/analistfunc.png"),
+  },
+  {
+    id: 9,
+    name: "DEVOPS",
+    info: "",
+    image: require("../images/headings/analistfunc.png"),
+  },
+  {
+    id: 10,
+    name: "Disenador UX/UI",
+    info: "",
+    image: require("../images/headings/analistfunc.png"),
+  },
+  {
+    id: 11,
+    name: "Desarrollador de videojuegos",
+    info: "",
+    image: require("../images/headings/analistfunc.png"),
+  },
+  {
+    id: 12,
+    name: "Project manager",
+    info: "",
+    image: require("../images/headings/analistfunc.png"),
+  },
+  {
+    id: 13,
+    name: "Robótica",
+    info: "",
+    image: require("../images/headings/analistfunc.png"),
+  },
+  {
+    id: 14,
+    name: "Sopoerte técnico",
+    info: "",
+    image: require("../images/headings/analistfunc.png"),
+  },
+  {
+    id: 15,
+    name: "Tester",
+    info: "",
+    image: require("../images/headings/analistfunc.png"),
+  },
+  {
+    id: 16,
+    name: "Desarrollador de aplicaciones de Escritorio",
+    info: "",
+    image: require("../images/headings/analistfunc.png"),
+  },
+];
