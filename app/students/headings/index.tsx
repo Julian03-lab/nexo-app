@@ -1,4 +1,12 @@
-import { View, Text, SafeAreaView, ScrollView, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Button,
+  TouchableHighlight,
+} from "react-native";
 import React from "react";
 import HeadingCard from "../../../components/carreers/DetailsCard";
 import { headingsList } from "../../../assets/info/headingsList";

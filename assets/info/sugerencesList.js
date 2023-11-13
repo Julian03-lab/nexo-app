@@ -43,4 +43,52 @@ export const sugerencesList = [
     id: 11,
     title: "Redes",
   },
+  {
+    id: 12,
+    title: "Gestión de proyectos",
+  },
+  {
+    id: 13,
+    title: "Animación",
+  },
+  {
+    id: 14,
+    title: "Arduino",
+  },
+  {
+    id: 15,
+    title: "App moviles",
+  },
+  {
+    id: 16,
+    title: "Estadísticas",
+  },
+  {
+    id: 17,
+    title: "Extrovertido",
+  },
+  {
+    id: 18,
+    title: "Robots",
+  },
+  {
+    id: 19,
+    title: "Realidad virtual y aumentada",
+  },
+  {
+    id: 20,
+    title: "Electrónica y circuitos",
+  },
+  {
+    id: 21,
+    title: "Mantenimiento dispositivos tecnológicos",
+  },
+  {
+    id: 22,
+    title: "Paginas web",
+  },
+  {
+    id: 23,
+    title: "Seguridad",
+  },
 ];
