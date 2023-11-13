@@ -28,6 +28,7 @@ export default carreers;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#fff",
   },
 
   carreerList: {
