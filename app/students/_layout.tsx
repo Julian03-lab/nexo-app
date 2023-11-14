@@ -151,6 +151,25 @@ const StackLayout = () => {
           ),
         }}
       />
+      <Tabs.Screen
+        name="faqs"
+        options={{
+          href: null,
+          headerTitle: "Preguntas",
+          headerRight: (props) => <NexoIcon fill={"#ab13ed"} {...props} />,
+          headerLeft: (props) => (
+            <TouchableOpacity onPress={() => router.back()}>
+              <BackArrowIcon />
+            </TouchableOpacity>
+          ),
+          headerLeftContainerStyle: {
+            paddingLeft: 24,
+          },
+          headerRightContainerStyle: {
+            paddingRight: 12,
+          },
+        }}
+      />
     </Tabs>
   );
 };

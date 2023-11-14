@@ -38,7 +38,7 @@ const SliderData = [
   {
     id: 3,
     title: "Preguntas",
-    link: "students/",
+    link: "students/faqs",
     image: require("../../assets/images/preguntas-image.png"),
   },
 ];

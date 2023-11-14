@@ -44,3 +44,12 @@ export const BackArrowIcon = (props) => (
     />
   </Svg>
 );
+
+export const IconArrow = (props) => (
+  <Svg width={24} height={24} fill="none" viewBox="0 0 24 24" {...props}>
+    <Path
+      fill={props.fill || "#000"}
+      d="M21.3068 7.68952L11.9991 16.9972L2.69141 7.68952L3.75488 6.62605L11.9991 14.8703L20.2433 6.62605L21.3068 7.68952Z"
+    />
+  </Svg>
+);
