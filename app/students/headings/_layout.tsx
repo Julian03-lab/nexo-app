@@ -7,7 +7,7 @@ export default function Layout() {
         headerShown: false,
       }}
     >
-      <Stack.Screen name="[headingid]" />
+      <Stack.Screen name="[id]" getId={({ params }) => params.id} />
     </Stack>
   );
 }

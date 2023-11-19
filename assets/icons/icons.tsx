@@ -39,8 +39,8 @@ export const HeadingsIcon = (props) => (
 export const BackArrowIcon = (props) => (
   <Svg width={24} height={24} fill="none" viewBox="0 0 24 24" {...props}>
     <Path
-      fill={props.fill || "#000"}
-      d="M20 11H7.83L13.42 5.41L12 4L4 12L12 20L13.41 18.59L7.83 13H20V11Z"
+      d="M16.3077 21.3577L7 12.05L16.3077 2.74228L17.3712 3.80575L9.12692 12.05L17.3712 20.2942L16.3077 21.3577Z"
+      fill="#767575"
     />
   </Svg>
 );

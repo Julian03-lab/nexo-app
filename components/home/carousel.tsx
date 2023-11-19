@@ -1,32 +1,27 @@
 import {
-  Animated,
   Dimensions,
   FlatList,
   StyleSheet,
   Text,
   TouchableHighlight,
-  TouchableOpacity,
   View,
 } from "react-native";
 import React, { useCallback, useRef, useState } from "react";
 import { Image } from "expo-image";
-import Carousel from "react-native-snap-carousel";
-import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
-import { ScrollView } from "react-native-gesture-handler";
 import CarouselPagination from "./CarouselPagination";
 
 const SliderData = [
   {
     id: 0,
     title: "Carreras",
-    link: "students/carreers",
+    link: "students/carreers/",
     image: require("../../assets/images/carreers-image.png"),
   },
   {
     id: 1,
     title: "Rubros",
-    link: "students/headings",
+    link: "students/headings/",
     image: require("../../assets/images/rubros-image.png"),
   },
   {
@@ -49,9 +44,9 @@ const ImageSlider = () => {
   const router = useRouter();
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const handleOnViewableItemsChanged = useCallback(({ viewableItems }) => {
+  const handleOnViewableItemsChanged = useRef(({ viewableItems }) => {
     setActiveIndex(viewableItems[0].index);
-  }, []);
+  }).current;
 
   const viewConfigRef = useRef({ itemVisiblePercentThreshold: 50 }).current;
 

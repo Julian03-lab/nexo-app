@@ -7,7 +7,6 @@ const Information = ({ carreerInfo }) => {
     <ScrollView>
       <View style={styles.headerContainer}>
         <Image source={carreerInfo.image} style={styles.image} />
-        <Text style={styles.subtitle}>{carreerInfo.subtitle}</Text>
       </View>
       <View style={styles.body}>
         <Text style={styles.title}>{carreerInfo.title}</Text>

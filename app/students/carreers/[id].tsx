@@ -31,7 +31,7 @@ const CarrerInfo = () => {
       case "information":
         return <Information carreerInfo={carreer.info} />;
       case "universities":
-        return <Universities />;
+        return <Universities universities={carreer.universities} />;
       default:
         return null;
     }

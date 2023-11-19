@@ -8,6 +8,17 @@
       "expo-router"
     ],
     "name": "nexo-app",
-    "slug": "nexo-app"
+    "slug": "nexo-app",
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "3df3c5f2-b20b-4e33-b623-ff13d6e2c666"
+      }
+    },
+    "android": {
+      "package": "com.fjulian03.nexoapp"
+    }
   }
 }

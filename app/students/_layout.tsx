@@ -43,7 +43,7 @@ const StackLayout = () => {
       <Tabs.Screen
         name="index"
         options={{
-          href: "/",
+          href: "/students/",
           headerTitle: (props) => <NexoFullIcon fill={"#ab13ed"} {...props} />,
           tabBarIcon: (props) => (
             <NexoIconEmpty
@@ -105,6 +105,11 @@ const StackLayout = () => {
           href: "/students/headings",
           headerTitle: "Rubros ",
           headerRight: (props) => <NexoIcon fill={"#ab13ed"} {...props} />,
+          headerTitleStyle: {
+            fontWeight: "600",
+            color: "#767575",
+            fontSize: 20,
+          },
           headerLeft: (props) => (
             <TouchableOpacity onPress={() => router.back()}>
               <BackArrowIcon />
@@ -130,6 +135,11 @@ const StackLayout = () => {
         options={{
           href: "/students/sugerences",
           headerTitle: "Sugerencias",
+          headerTitleStyle: {
+            fontWeight: "600",
+            color: "#767575",
+            fontSize: 20,
+          },
           headerRight: (props) => <NexoIcon fill={"#ab13ed"} {...props} />,
           headerLeft: (props) => (
             <TouchableOpacity onPress={() => router.back()}>
@@ -155,6 +165,11 @@ const StackLayout = () => {
         name="faqs"
         options={{
           href: null,
+          headerTitleStyle: {
+            fontWeight: "600",
+            color: "#767575",
+            fontSize: 20,
+          },
           headerTitle: "Preguntas",
           headerRight: (props) => <NexoIcon fill={"#ab13ed"} {...props} />,
           headerLeft: (props) => (

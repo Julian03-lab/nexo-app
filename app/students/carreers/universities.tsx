@@ -1,28 +1,40 @@
-import { StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { Image } from "expo-image";
 import { Link } from "expo-router";
+import carreers from ".";
 
 //Es un placeholder, poner info final
-const Universities = () => {
+const Universities = ({ universities }) => {
   return (
-    <View style={styles.body}>
-      <Text style={styles.title}>Universidades donde se cursa</Text>
-      <View style={{ gap: 16, alignItems: "center" }}>
-        <Text style={styles.text}>
-          Analista en Tecnologías de la Información y la Comunicación se trata
-          de una carrera de corta de 3 años que se cursa en la Facultad de
-          Informática en la Universidad Nacional de la Plata (UNLP).
-        </Text>
-        <Image
-          source={require("../../../assets/images/informunlp.png")}
-          style={{ width: 180, height: 180 }}
-        />
-        <Link href={"google.com"} style={styles.link}>
-          Ver más
-        </Link>
+    <ScrollView style={{ flex: 1, backgroundColor: "#fff" }}>
+      <View style={styles.body}>
+        <Text style={styles.title}>Universidades donde se cursa</Text>
+        {universities.map((university) => (
+          <View style={{ gap: 16, alignItems: "center" }} key={universities.id}>
+            <Text style={styles.text}>{university.text}</Text>
+            <Image
+              source={university.image}
+              style={{ width: "100%", height: 180 }}
+              contentFit="contain"
+            />
+            <View style={{ flex: 1, alignItems: "center", width: "25 %" }}>
+              <Link href={university.link} style={styles.link}>
+                Ver más
+              </Link>
+              <View
+                style={{
+                  width: "100%",
+                  borderColor: "#ab13ed",
+                  borderWidth: 1,
+                  marginTop: 5,
+                }}
+              />
+            </View>
+          </View>
+        ))}
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
