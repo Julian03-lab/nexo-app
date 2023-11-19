@@ -81,7 +81,6 @@ const styles = StyleSheet.create({
     backgroundColor: "red",
   },
   textStyles: {
-    fontWeight: "700",
     letterSpacing: 0.1,
     position: "absolute",
     alignSelf: "center",
@@ -92,6 +91,7 @@ const styles = StyleSheet.create({
     textShadowColor: "rgba(0, 0, 0, 0.80)",
     textShadowOffset: { width: 0, height: 3 },
     textShadowRadius: 3,
+    fontFamily: "Roboto_700Bold",
   },
   gradient: {
     position: "absolute",

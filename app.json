@@ -4,11 +4,18 @@
     "web": {
       "bundler": "metro"
     },
-    "plugins": [
-      "expo-router"
-    ],
-    "name": "nexo-app",
+    "plugins": ["expo-router"],
+    "name": "Nexo",
     "slug": "nexo-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/favicon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#fff"
+    },
+    "userInterfaceStyle": "light",
     "extra": {
       "router": {
         "origin": false
@@ -18,7 +25,11 @@
       }
     },
     "android": {
-      "package": "com.fjulian03.nexoapp"
+      "package": "com.fjulian03.nexoapp",
+      "adaptativeIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
+      }
     }
   }
 }
