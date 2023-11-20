@@ -48,21 +48,23 @@ const SelectorPage = () => {
             contentFit="cover"
           />
         </View>
-        <View style={styles.section}>
-          <LinearGradient
-            colors={["rgba(26, 188, 254, 0.40)", "rgba(26, 188, 254, 0.40)"]}
-            style={styles.gradient}
-          />
-          <Text style={styles.textStyles}>Reclutador</Text>
-          <Image
-            source={require("../assets/images/reclutador-image.png")}
-            style={{
-              width: "100%",
-              height: 280,
-            }}
-            contentFit="cover"
-          />
-        </View>
+        <TouchableHighlight onPress={() => router.push("/recruiter/")}>
+          <View style={styles.section}>
+            <LinearGradient
+              colors={["rgba(26, 188, 254, 0.40)", "rgba(26, 188, 254, 0.40)"]}
+              style={styles.gradient}
+            />
+            <Text style={styles.textStyles}>Reclutador</Text>
+            <Image
+              source={require("../assets/images/reclutador-image.png")}
+              style={{
+                width: "100%",
+                height: 280,
+              }}
+              contentFit="cover"
+            />
+          </View>
+        </TouchableHighlight>
       </ScrollView>
     </SafeAreaView>
   );
