@@ -1,15 +1,17 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 
-const SugerenceCarreerCard = () => {
+const SugerenceCarreerCard = ({
+  title,
+  text,
+}: {
+  title: string;
+  text: string;
+}) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Desarrollador web</Text>
-      <Text style={styles.text}>
-        Un desarrollador web crea sitios web utilizando varios lenguajes de
-        programación. Sus responsabilidades incluyen el diseño y el desarrollo
-        de funcionalidades para satisfacer las necesidades de los usuarios.
-      </Text>
+      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.text}>{text}</Text>
     </View>
   );
 };

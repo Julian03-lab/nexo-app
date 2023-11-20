@@ -4,7 +4,10 @@ import SugerencesSVG from "../../../assets/images/undraw/sugerencesdraw";
 import ButtonChip from "../../../components/ButtonChip";
 import SugerenceCarreerCard from "../../../components/sugerences/SugerenceCarreerCard";
 import { useLocalSearchParams } from "expo-router";
-import { sugerencesList } from "../../../assets/info/sugerencesList";
+import {
+  sugerencesCards,
+  sugerencesList,
+} from "../../../assets/info/sugerencesList";
 
 const Data = () => {
   const params = useLocalSearchParams();
@@ -16,6 +19,27 @@ const Data = () => {
   const filtrados = sugerencesList.filter((sugerence) =>
     selected.includes(sugerence.id.toLocaleString())
   );
+
+  const coincidencias = filtrarPorTags(filtrados, sugerencesCards);
+
+  function filtrarPorTags(
+    sugerencias: typeof sugerencesList,
+    cards: typeof sugerencesCards
+  ) {
+    // Obtener la lista de tags seleccionados del primer array
+    const tagsSeleccionados = sugerencias.map((item) => item.title);
+    console.log(tagsSeleccionados);
+
+    // Filtrar los elementos del segundo array cuyos tags coinciden con los seleccionados
+    const elementosFiltrados = cards.filter((item) => {
+      const tagsCoincidentes = item.tags.filter((tag) =>
+        tagsSeleccionados.includes(tag)
+      );
+      return tagsCoincidentes.length > 0;
+    });
+
+    return elementosFiltrados;
+  }
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -36,7 +60,13 @@ const Data = () => {
               />
             ))}
           </View>
-          <SugerenceCarreerCard />
+          {coincidencias.map((sugerence) => (
+            <SugerenceCarreerCard
+              key={sugerence.id}
+              title={sugerence.title}
+              text={sugerence.description}
+            />
+          ))}
         </View>
       </ScrollView>
     </SafeAreaView>

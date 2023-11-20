@@ -31,8 +31,8 @@ const Selector = () => {
       </View>
       <TouchableHighlight
         style={styles.button}
-        underlayColor={"#AF13F2"}
-        activeOpacity={0.5}
+        underlayColor={"#8E0FC5"}
+        activeOpacity={0.8}
         onPress={() =>
           router.push({
             pathname: "/students/sugerences/results",
