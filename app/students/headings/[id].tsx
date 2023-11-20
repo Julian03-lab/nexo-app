@@ -12,28 +12,22 @@ import { Image } from "expo-image";
 import RenderHTML from "react-native-render-html";
 
 const info = () => {
-  const { headingid } = useLocalSearchParams();
+  const { id } = useLocalSearchParams();
   const { width } = useWindowDimensions();
-  const heading = headingsList.find(
-    (carreer) => carreer.id === Number(headingid)
-  );
-
-  const listaSecciones = (string: string) =>
-    string.match(/\(LISTA\)(.*?)\(LISTA\)/gs);
+  const heading = headingsList.find((carreer) => carreer.id === Number(id));
 
   return (
     <ScrollView>
       <Image source={heading.image} style={styles.image} />
       <View style={styles.body}>
         <Text style={styles.title}>{heading.name}</Text>
-        {/* <Text style={styles.bodyText}>{heading.info}</Text> */}
-        <RenderHTML
-          contentWidth={width}
-          source={{
-            html: heading.info,
-          }}
-          // style={{ flex: 1 }}
-        />
+        <View>
+          {heading.info.split("\n").map((paragraph, index) => (
+            <Text key={index} style={styles.bodyText}>
+              {paragraph}
+            </Text>
+          ))}
+        </View>
       </View>
     </ScrollView>
   );
@@ -65,6 +59,5 @@ const styles = StyleSheet.create({
     fontWeight: "400",
     color: "#000",
     lineHeight: 27,
-    backgroundColor: "red",
   },
 });

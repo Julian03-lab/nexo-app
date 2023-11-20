@@ -4,10 +4,10 @@ import {
   Roboto_400Regular,
   Roboto_700Bold,
 } from "@expo-google-fonts/roboto";
-import { Stack } from "expo-router/stack";
-import { useCallback, useEffect } from "react";
-import * as SplashScreen from "expo-splash-screen";
-import { StyleSheet, View } from "react-native";
+import { SplashScreen, Stack } from "expo-router";
+import { useEffect } from "react";
+
+SplashScreen.preventAutoHideAsync();
 
 export default function Layout() {
   let [fontsLoaded] = useFonts({
@@ -17,28 +17,27 @@ export default function Layout() {
   });
 
   useEffect(() => {
-    async function prepare() {
-      await SplashScreen.preventAutoHideAsync();
-    }
-    prepare();
-  }, []);
-
-  const onLayoutRootView = useCallback(async () => {
     if (fontsLoaded) {
-      await SplashScreen.hideAsync();
+      setTimeout(() => {
+        SplashScreen.hideAsync();
+      });
     }
   }, [fontsLoaded]);
+
+  // const onLayoutRootView = useCallback(async () => {
+  //   if (fontsLoaded) {
+  //     SplashScreen.hideAsync();
+  //   }
+  // }, [fontsLoaded]);
 
   if (!fontsLoaded) {
     return null;
   }
   return (
-    <View onLayout={onLayoutRootView} style={{ flex: 1 }}>
-      <Stack
-        screenOptions={{
-          headerShown: false,
-        }}
-      />
-    </View>
+    <Stack
+      screenOptions={{
+        headerShown: false,
+      }}
+    />
   );
 }

@@ -78,7 +78,6 @@ const styles = StyleSheet.create({
     position: "relative",
     display: "flex",
     width: "100%",
-    backgroundColor: "red",
   },
   textStyles: {
     letterSpacing: 0.1,

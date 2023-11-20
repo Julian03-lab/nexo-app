@@ -11,11 +11,10 @@
     "orientation": "portrait",
     "icon": "./assets/favicon.png",
     "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#fff"
+      "image": "./assets/splashscreen.png",
+      "resizeMode": "cover"
     },
-    "userInterfaceStyle": "light",
+    "backgroundColor": "#ffffff",
     "extra": {
       "router": {
         "origin": false

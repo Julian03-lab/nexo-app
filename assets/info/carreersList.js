@@ -175,6 +175,12 @@ export const carreersList = [
         image: require("../images/informunlp.jpeg"),
         link: "https://www.info.unlp.edu.ar/ciencia-de-datos-en-organizaciones/",
       },
+      {
+        id: 12,
+        text: "También se cursa en la Facultad de Ciencias Económicas. Y posee una duración de 4 a 5 años.",
+        image: require("../images/unlp.png"),
+        link: "https://www.econo.unlp.edu.ar/cdo ",
+      },
     ],
   },
 ];
