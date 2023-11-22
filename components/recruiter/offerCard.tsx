@@ -12,6 +12,7 @@ import {
   MenuIcon,
   PersonIcon,
 } from "../../assets/icons/icons";
+import DeleteModal from "./DeleteModal";
 
 type OfferCardProps = {
   title: string;
@@ -27,6 +28,7 @@ type OfferCardProps = {
 
 const OfferCard = ({ data, title, publisher }: OfferCardProps) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [deleteModal, setDeleteModal] = useState(false);
   const animatedHeight = useRef(new Animated.Value(0)).current;
 
   const toggleDespliegue = () => {
@@ -40,6 +42,10 @@ const OfferCard = ({ data, title, publisher }: OfferCardProps) => {
   };
   return (
     <View style={styles.container}>
+      <DeleteModal
+        modalVisible={deleteModal}
+        setModalVisible={setDeleteModal}
+      />
       <TouchableHighlight
         underlayColor="transparent"
         activeOpacity={0.5}
@@ -72,10 +78,16 @@ const OfferCard = ({ data, title, publisher }: OfferCardProps) => {
             <EditIcon />
             <Text style={styles.menuText}>Editar</Text>
           </View>
-          <View style={styles.menuItem}>
-            <DeleteIcon />
-            <Text style={styles.menuText}>Eliminar</Text>
-          </View>
+          <TouchableHighlight
+            underlayColor="transparent"
+            activeOpacity={0.5}
+            onPress={() => setDeleteModal(!deleteModal)}
+          >
+            <View style={styles.menuItem}>
+              <DeleteIcon />
+              <Text style={styles.menuText}>Eliminar</Text>
+            </View>
+          </TouchableHighlight>
         </View>
       </Animated.View>
     </View>
