@@ -1,7 +1,6 @@
 import {
   KeyboardAvoidingView,
   SafeAreaView,
-  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -9,13 +8,13 @@ import {
   View,
 } from "react-native";
 import React, { useRef, useState } from "react";
-import { NexoIcon } from "../../assets/icons/nexo-icon";
-import { EyeOff, GoogleIcon, LinkedinIcon } from "../../assets/icons/icons";
-import { Link } from "expo-router";
+import { NexoIcon } from "../../../assets/icons/nexo-icon";
+import { EyeOff, EyeOn } from "../../../assets/icons/icons";
 
-const login = () => {
+const newPassword = () => {
   const passwordRef = useRef(null);
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [passwordVisible2, setPasswordVisible2] = useState(false);
 
   return (
     <SafeAreaView
@@ -47,19 +46,10 @@ const login = () => {
           ></View>
         </View>
         <View style={styles.inputArea}>
-          <TextInput
-            style={styles.input}
-            placeholder="Correo electrónico"
-            placeholderTextColor="rgba(31, 34, 105, 0.50)"
-            keyboardType="email-address"
-            autoComplete="email"
-            enterKeyHint="next"
-            onSubmitEditing={() => passwordRef.current.focus()}
-            blurOnSubmit={false}
-          />
           <View>
             <TouchableHighlight
               onPress={() => setPasswordVisible(!passwordVisible)}
+              underlayColor="transparent"
               style={{
                 position: "absolute",
                 right: 0,
@@ -67,27 +57,42 @@ const login = () => {
                 zIndex: 1,
               }}
             >
-              <EyeOff />
+              {passwordVisible ? <EyeOff /> : <EyeOn />}
             </TouchableHighlight>
             <TextInput
               style={styles.input}
-              placeholder="Contraseña"
+              placeholder="Nueva Contraseña"
               placeholderTextColor="rgba(31, 34, 105, 0.50)"
               secureTextEntry={!passwordVisible}
-              ref={passwordRef}
               autoComplete="off"
               keyboardType={!passwordVisible ? "default" : "visible-password"}
+              enterKeyHint="next"
+              onSubmitEditing={() => passwordRef.current.focus()}
+              blurOnSubmit={false}
             />
-            <Link
-              href="/recruiter/forgot-password"
+          </View>
+          <View>
+            <TouchableHighlight
+              onPress={() => setPasswordVisible2(!passwordVisible2)}
+              underlayColor="transparent"
               style={{
-                color: "#0076B2",
-                fontFamily: "Roboto_400Regular",
-                fontSize: 11,
+                position: "absolute",
+                right: 0,
+                top: 16,
+                zIndex: 1,
               }}
             >
-              Olvide mi contraseña
-            </Link>
+              {passwordVisible2 ? <EyeOff /> : <EyeOn />}
+            </TouchableHighlight>
+            <TextInput
+              style={styles.input}
+              placeholder="Confirmar Contraseña"
+              placeholderTextColor="rgba(31, 34, 105, 0.50)"
+              secureTextEntry={!passwordVisible2}
+              ref={passwordRef}
+              autoComplete="off"
+              keyboardType={!passwordVisible2 ? "default" : "visible-password"}
+            />
           </View>
         </View>
         <View style={styles.buttonArea}>
@@ -104,46 +109,8 @@ const login = () => {
                 fontFamily: "Roboto_500Medium",
               }}
             >
-              Iniciar sesión
+              Recuperar contraseña
             </Text>
-          </TouchableHighlight>
-          <TouchableHighlight
-            onPress={() => console.log("press")}
-            style={styles.secondButton}
-            underlayColor="rgba(31, 34, 105, 0.20)"
-          >
-            <View style={{ flexDirection: "row", gap: 10 }}>
-              <GoogleIcon />
-              <Text
-                style={{
-                  color: "#1F2269",
-                  textAlign: "center",
-                  fontSize: 16,
-                  fontFamily: "Roboto_500Medium",
-                }}
-              >
-                Iniciar sesion con Google
-              </Text>
-            </View>
-          </TouchableHighlight>
-          <TouchableHighlight
-            onPress={() => console.log("press")}
-            style={styles.secondButton}
-            underlayColor="rgba(31, 34, 105, 0.20)"
-          >
-            <View style={{ flexDirection: "row", gap: 10 }}>
-              <LinkedinIcon />
-              <Text
-                style={{
-                  color: "#1F2269",
-                  textAlign: "center",
-                  fontSize: 16,
-                  fontFamily: "Roboto_500Medium",
-                }}
-              >
-                Iniciar sesion con Linkedin
-              </Text>
-            </View>
           </TouchableHighlight>
         </View>
       </KeyboardAvoidingView>
@@ -151,7 +118,7 @@ const login = () => {
   );
 };
 
-export default login;
+export default newPassword;
 
 const styles = StyleSheet.create({
   header: {
