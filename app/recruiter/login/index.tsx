@@ -16,9 +16,10 @@ import {
   GoogleIcon,
   LinkedinIcon,
 } from "../../../assets/icons/icons";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 
 const login = () => {
+  const router = useRouter();
   const passwordRef = useRef(null);
   const [passwordVisible, setPasswordVisible] = useState(false);
 
@@ -100,7 +101,7 @@ const login = () => {
           </View>
           <View style={styles.buttonArea}>
             <TouchableHighlight
-              onPress={() => console.log("press")}
+              onPress={() => router.push("/recruiter/home")}
               style={styles.firstButton}
               underlayColor="rgba(31, 34, 105, 0.50)"
             >
