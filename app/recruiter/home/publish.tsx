@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import React from "react";
 import InputWithLabel from "../../../components/InputWithLabel";
+import { Picker } from "@react-native-picker/picker";
 
 const publish = () => {
   return (
@@ -56,6 +57,33 @@ const publish = () => {
               placeholder="Ej. Desarrollador Frontend"
               placeholderTextColor={"#BCBABA"}
             />
+          </InputWithLabel>
+          <InputWithLabel label="Modo">
+            <View style={styles.inputSelect}>
+              <Picker
+                selectedValue={"remoto"}
+                onValueChange={(itemValue, itemIndex) => console.log(itemValue)}
+                mode="dropdown"
+              >
+                <Picker.Item label="Remoto" value="remoto" />
+                <Picker.Item label="Presencial" value="presencial" />
+                <Picker.Item label="Hibrido" value="hibrido" />
+              </Picker>
+            </View>
+          </InputWithLabel>
+          <InputWithLabel label="Experiencia">
+            <View style={styles.inputSelect}>
+              <Picker
+                selectedValue={"junior"}
+                onValueChange={(itemValue, itemIndex) => console.log(itemValue)}
+                mode="dropdown"
+              >
+                <Picker.Item label="Training" value="training" />
+                <Picker.Item label="Junior" value="junior" />
+                <Picker.Item label="Semi Senior" value="semisenior" />
+                <Picker.Item label="Senior" value="senior" />
+              </Picker>
+            </View>
           </InputWithLabel>
           <InputWithLabel label="Link a formulario">
             <TextInput
@@ -128,6 +156,16 @@ const styles = StyleSheet.create({
   input: {
     paddingVertical: 8,
     paddingHorizontal: 10,
+    fontSize: 16,
+    fontFamily: "Roboto_400Regular",
+    color: "#000",
+    backgroundColor: "#fff",
+    borderRadius: 5,
+    borderColor: "#1F2269",
+    borderWidth: 0.5,
+    textAlignVertical: "top",
+  },
+  inputSelect: {
     fontSize: 16,
     fontFamily: "Roboto_400Regular",
     color: "#000",
