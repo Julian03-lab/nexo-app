@@ -7,7 +7,7 @@ import {
   TouchableHighlight,
   View,
 } from "react-native";
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import {
   HandIcon,
   PublishButtonSVG,
@@ -20,6 +20,7 @@ import useUserStore from "../../../../services/context";
 
 const main = () => {
   const [firstTime, setFirstTime] = React.useState(true);
+  const [search, setSearch] = React.useState("");
   const { user } = useUserStore();
   const router = useRouter();
 
@@ -37,6 +38,15 @@ const main = () => {
     return <></>;
   }
 
+  const filterData = useMemo(() => {
+    if (search === "") {
+      return user.publications;
+    }
+    return user.publications.filter((item) =>
+      item.title.toLocaleLowerCase().includes(search.toLocaleLowerCase())
+    );
+  }, [search, user.publications]);
+
   return (
     <SafeAreaView style={styles.containter}>
       <ScrollView>
@@ -53,6 +63,8 @@ const main = () => {
               style={styles.searchInput}
               placeholder="Buscar"
               placeholderTextColor="rgba(31, 34, 105, 0.50)"
+              value={search}
+              onChangeText={(text) => setSearch(text)}
             />
           </View>
         </View>
@@ -64,7 +76,7 @@ const main = () => {
             gap: 20,
           }}
         >
-          {user.publications.length === 0 && (
+          {filterData.length === 0 && (
             <>
               <Text
                 style={{
@@ -90,7 +102,7 @@ const main = () => {
               </TouchableHighlight>
             </>
           )}
-          {user.publications.map((item) => (
+          {filterData.map((item) => (
             <OfferCard key={item.id} data={item} />
           ))}
         </View>
