@@ -14,11 +14,13 @@ import {
   StatsIcon,
 } from "../../assets/icons/icons";
 import Resume from "./Resume";
+import { useRouter } from "expo-router";
 
 const ApplicantCard = ({ email }: { email: string }) => {
   const animatedHeight = useRef(new Animated.Value(0)).current;
   const [menuOpen, setMenuOpen] = useState(false);
   const [resumeOpen, setResumeOpen] = useState(false);
+  const router = useRouter();
 
   const toggleDespliegue = () => {
     setMenuOpen(!menuOpen);
@@ -70,7 +72,7 @@ const ApplicantCard = ({ email }: { email: string }) => {
             <TouchableHighlight
               underlayColor="transparent"
               activeOpacity={0.5}
-              // onPress={() => router.push(`/recruiter/home/main/${data.id}`)}
+              onPress={() => router.push(`/recruiter/home/stats`)}
             >
               <View style={styles.menuItem}>
                 <StatsIcon />

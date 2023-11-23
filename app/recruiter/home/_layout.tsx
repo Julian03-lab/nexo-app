@@ -232,7 +232,7 @@ const RecruiterLayout = () => {
           },
         }}
       />
-      {/* <Tabs.Screen
+      <Tabs.Screen
         name="stats"
         options={{
           href: null,
@@ -255,7 +255,7 @@ const RecruiterLayout = () => {
             paddingRight: 12,
           },
         }}
-      /> */}
+      />
     </Tabs>
   );
 };
