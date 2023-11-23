@@ -232,6 +232,30 @@ const RecruiterLayout = () => {
           },
         }}
       />
+      {/* <Tabs.Screen
+        name="stats"
+        options={{
+          href: null,
+          headerTitle: "Estadísticas",
+          headerTitleStyle: {
+            fontFamily: "Roboto_700Bold",
+            color: "#1F2269",
+            fontSize: 20,
+          },
+          headerLeft: (props) => (
+            <TouchableOpacity onPress={() => router.back()}>
+              <BackArrowIcon />
+            </TouchableOpacity>
+          ),
+          headerLeftContainerStyle: {
+            paddingLeft: 12,
+          },
+          headerRight: () => <NexoIcon fill={"#1F2269"} />,
+          headerRightContainerStyle: {
+            paddingRight: 12,
+          },
+        }}
+      /> */}
     </Tabs>
   );
 };

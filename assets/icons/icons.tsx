@@ -268,3 +268,14 @@ export const StatsIcon = (props) => (
     />
   </Svg>
 );
+
+export const GlobeSVG = (props) => (
+  <Svg width={52} height={32} fill="none" viewBox="0 0 52 32" {...props}>
+    <Path
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M12 0.199219C5.37258 0.199219 0 5.5718 0 12.1992C0 18.8266 5.37257 24.1992 12 24.1992H21.3776L26.3441 32.1992L31.3105 24.1992H40.6882C47.3156 24.1992 52.6882 18.8266 52.6882 12.1992C52.6882 5.5718 47.3156 0.199219 40.6882 0.199219H12Z"
+      fill="#1AD9E5"
+    />
+  </Svg>
+);

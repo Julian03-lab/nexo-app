@@ -8,7 +8,11 @@ type InputWithLabelProps = {
 
 const InputWithLabel = ({ children, label }: InputWithLabelProps) => {
   return (
-    <View>
+    <View
+      style={{
+        width: "100%",
+      }}
+    >
       <Text style={styles.label}>{label}</Text>
       {children}
     </View>
