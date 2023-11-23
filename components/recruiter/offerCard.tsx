@@ -83,7 +83,7 @@ const OfferCard = ({ data }: OfferCardProps) => {
           <TouchableHighlight
             underlayColor="transparent"
             activeOpacity={0.5}
-            onPress={() => router.push(`/recruiter/home/main/${data.title}`)}
+            onPress={() => router.push(`/recruiter/home/main/${data.id}`)}
           >
             <View style={styles.menuItem}>
               <PersonIcon />
@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     paddingVertical: 10,
-    paddingHorizontal: 10,
+    paddingHorizontal: 20,
   },
   menuItem: {
     alignItems: "center",

@@ -21,7 +21,7 @@ import useUserStore from "../../../../services/context";
 const main = () => {
   const [firstTime, setFirstTime] = React.useState(true);
   const [search, setSearch] = React.useState("");
-  const { user, setUser } = useUserStore();
+  const { user } = useUserStore();
   const router = useRouter();
 
   useEffect(() => {
@@ -114,7 +114,10 @@ const main = () => {
 export default main;
 
 const styles = StyleSheet.create({
-  containter: { flex: 1, backgroundColor: "#fff" },
+  containter: {
+    flex: 1,
+    backgroundColor: "#fff",
+  },
   handIcon: {
     position: "absolute",
     bottom: 10,
