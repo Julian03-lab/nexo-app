@@ -83,7 +83,12 @@ const OfferCard = ({ data }: OfferCardProps) => {
           <TouchableHighlight
             underlayColor="transparent"
             activeOpacity={0.5}
-            onPress={() => router.push(`/recruiter/home/main/${data.id}`)}
+            onPress={() =>
+              router.push({
+                pathname: "/recruiter/home/applicants",
+                params: { job: data.id },
+              })
+            }
           >
             <View style={styles.menuItem}>
               <PersonIcon />
@@ -126,7 +131,7 @@ const styles = StyleSheet.create({
     fontFamily: "Roboto_500Medium",
     color: "#1F2269",
     paddingHorizontal: 10,
-    width: 300,
+    width: "90%",
   },
   menuIcon: {
     position: "absolute",

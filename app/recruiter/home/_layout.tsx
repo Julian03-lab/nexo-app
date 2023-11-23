@@ -37,7 +37,7 @@ const RecruiterLayout = () => {
         headerTitleStyle: {
           fontWeight: "bold",
         },
-        tabBarActiveTintColor: "#ab13ed",
+        tabBarActiveTintColor: "#03AEB9",
         tabBarStyle: {
           height: 64,
           paddingHorizontal: 10,
@@ -58,12 +58,12 @@ const RecruiterLayout = () => {
           headerTitle: (props) => <NexoIcon fill={"#1F2269"} {...props} />,
           tabBarIcon: (props) => (
             <NexoIconEmpty
-              fill={props.focused ? "#ab13ed" : "#767575"}
+              fill={props.focused ? "#03AEB9" : "#767575"}
               {...props}
             />
           ),
           tabBarLabel: "Nexo",
-          tabBarActiveTintColor: "#ab13ed",
+          tabBarActiveTintColor: "#03AEB9",
           headerLeft: (props) => (
             <TouchableOpacity onPress={() => router.back()}>
               <NotificationIcon />
@@ -95,12 +95,12 @@ const RecruiterLayout = () => {
           },
           tabBarIcon: (props) => (
             <CheckIcon
-              fill={props.focused ? "#ab13ed" : "#767575"}
+              fill={props.focused ? "#03AEB9" : "#767575"}
               {...props}
             />
           ),
           tabBarLabel: "Prioridades",
-          tabBarActiveTintColor: "#ab13ed",
+          tabBarActiveTintColor: "#03AEB9",
           headerLeft: (props) => (
             <TouchableOpacity onPress={() => router.back()}>
               <BackArrowIcon />
@@ -126,10 +126,10 @@ const RecruiterLayout = () => {
             fontSize: 20,
           },
           tabBarIcon: (props) => (
-            <SaveIcon fill={props.focused ? "#ab13ed" : "#767575"} {...props} />
+            <SaveIcon fill={props.focused ? "#03AEB9" : "#767575"} {...props} />
           ),
           tabBarLabel: "Guardados",
-          tabBarActiveTintColor: "#ab13ed",
+          tabBarActiveTintColor: "#03AEB9",
           headerLeft: (props) => (
             <TouchableOpacity onPress={() => router.back()}>
               <BackArrowIcon />
@@ -156,12 +156,12 @@ const RecruiterLayout = () => {
           },
           tabBarIcon: (props) => (
             <DeleteIcon
-              fill={props.focused ? "#ab13ed" : "#767575"}
+              fill={props.focused ? "#03AEB9" : "#767575"}
               {...props}
             />
           ),
           tabBarLabel: "Papelera",
-          tabBarActiveTintColor: "#ab13ed",
+          tabBarActiveTintColor: "#03AEB9",
           headerLeft: (props) => (
             <TouchableOpacity onPress={() => router.back()}>
               <BackArrowIcon />
@@ -188,12 +188,36 @@ const RecruiterLayout = () => {
           },
           tabBarIcon: (props) => (
             <PublishIcon
-              fill={props.focused ? "#ab13ed" : "#767575"}
+              fill={props.focused ? "#03AEB9" : "#767575"}
               {...props}
             />
           ),
           tabBarLabel: "Publicar",
-          tabBarActiveTintColor: "#ab13ed",
+          tabBarActiveTintColor: "#03AEB9",
+          headerLeft: (props) => (
+            <TouchableOpacity onPress={() => router.back()}>
+              <BackArrowIcon />
+            </TouchableOpacity>
+          ),
+          headerLeftContainerStyle: {
+            paddingLeft: 12,
+          },
+          headerRight: () => <NexoIcon fill={"#1F2269"} />,
+          headerRightContainerStyle: {
+            paddingRight: 12,
+          },
+        }}
+      />
+      <Tabs.Screen
+        name="applicants"
+        options={{
+          href: null,
+          headerTitle: "Aspirantes",
+          headerTitleStyle: {
+            fontFamily: "Roboto_700Bold",
+            color: "#1F2269",
+            fontSize: 20,
+          },
           headerLeft: (props) => (
             <TouchableOpacity onPress={() => router.back()}>
               <BackArrowIcon />

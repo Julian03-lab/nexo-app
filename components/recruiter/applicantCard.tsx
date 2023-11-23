@@ -13,13 +13,16 @@ import {
   MenuIcon,
   StatsIcon,
 } from "../../assets/icons/icons";
+import Resume from "./Resume";
 
 const ApplicantCard = ({ email }: { email: string }) => {
   const animatedHeight = useRef(new Animated.Value(0)).current;
   const [menuOpen, setMenuOpen] = useState(false);
+  const [resumeOpen, setResumeOpen] = useState(false);
 
   const toggleDespliegue = () => {
     setMenuOpen(!menuOpen);
+    setResumeOpen(false);
 
     Animated.timing(animatedHeight, {
       toValue: menuOpen ? 0 : 64,
@@ -28,57 +31,67 @@ const ApplicantCard = ({ email }: { email: string }) => {
     }).start();
   };
   return (
-    <View style={styles.card}>
-      <View style={styles.container}>
-        <Text style={styles.text}>{email}</Text>
-        <TouchableHighlight
-          underlayColor="transparent"
-          activeOpacity={0.5}
-          onPress={toggleDespliegue}
-        >
-          <MenuIcon />
-        </TouchableHighlight>
-      </View>
-      <Animated.View style={{ height: animatedHeight, overflow: "hidden" }}>
-        <View style={{ height: 1, backgroundColor: "#1AD9E5" }} />
-        <View style={styles.menu}>
+    <>
+      <View style={styles.card}>
+        <View style={styles.container}>
+          <Text style={styles.text}>{email}</Text>
           <TouchableHighlight
             underlayColor="transparent"
             activeOpacity={0.5}
-            // onPress={() => router.push(`/recruiter/home/main/${data.id}`)}
+            onPress={toggleDespliegue}
           >
-            <View style={styles.menuItem}>
-              <CVIcon />
-              <Text style={styles.menuText}>CV</Text>
-            </View>
-          </TouchableHighlight>
-          <View style={styles.menuItem}>
-            <EmailIcon />
-            <Text style={styles.menuText}>Contactar</Text>
-          </View>
-          <TouchableHighlight
-            underlayColor="transparent"
-            activeOpacity={0.5}
-            // onPress={() => router.push(`/recruiter/home/main/${data.id}`)}
-          >
-            <View style={styles.menuItem}>
-              <StatsIcon />
-              <Text style={styles.menuText}>Estadísticas</Text>
-            </View>
-          </TouchableHighlight>
-          <TouchableHighlight
-            underlayColor="transparent"
-            activeOpacity={0.5}
-            // onPress={() => setDeleteModal(!deleteModal)}
-          >
-            <View style={styles.menuItem}>
-              <DeleteIcon />
-              <Text style={styles.menuText}>Eliminar</Text>
-            </View>
+            <MenuIcon />
           </TouchableHighlight>
         </View>
-      </Animated.View>
-    </View>
+        <Animated.View style={{ height: animatedHeight, overflow: "hidden" }}>
+          <View style={{ height: 1, backgroundColor: "#1AD9E5" }} />
+          <View style={styles.menu}>
+            <TouchableHighlight
+              underlayColor="transparent"
+              activeOpacity={0.5}
+              onPress={() => setResumeOpen(!resumeOpen)}
+            >
+              <View style={styles.menuItem}>
+                <CVIcon fill={resumeOpen && "#03AEB9"} />
+                <Text
+                  style={{
+                    ...styles.menuText,
+                    color: resumeOpen ? "#03AEB9" : "#767575",
+                  }}
+                >
+                  CV
+                </Text>
+              </View>
+            </TouchableHighlight>
+            <View style={styles.menuItem}>
+              <EmailIcon />
+              <Text style={styles.menuText}>Contactar</Text>
+            </View>
+            <TouchableHighlight
+              underlayColor="transparent"
+              activeOpacity={0.5}
+              // onPress={() => router.push(`/recruiter/home/main/${data.id}`)}
+            >
+              <View style={styles.menuItem}>
+                <StatsIcon />
+                <Text style={styles.menuText}>Estadísticas</Text>
+              </View>
+            </TouchableHighlight>
+            <TouchableHighlight
+              underlayColor="transparent"
+              activeOpacity={0.5}
+              // onPress={() => setDeleteModal(!deleteModal)}
+            >
+              <View style={styles.menuItem}>
+                <DeleteIcon />
+                <Text style={styles.menuText}>Eliminar</Text>
+              </View>
+            </TouchableHighlight>
+          </View>
+        </Animated.View>
+      </View>
+      {resumeOpen && <Resume />}
+    </>
   );
 };
 

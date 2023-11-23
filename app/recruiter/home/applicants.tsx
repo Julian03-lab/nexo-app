@@ -10,12 +10,13 @@ import {
 } from "react-native";
 import React, { useRef } from "react";
 import { useLocalSearchParams } from "expo-router";
-import useUserStore from "../../../../services/context";
-import ApplicantCard from "../../../../components/recruiter/applicantCard";
-import { IconArrow } from "../../../../assets/icons/icons";
+import useUserStore from "../../../services/context";
+import ApplicantCard from "../../../components/recruiter/applicantCard";
+import { IconArrow } from "../../../assets/icons/icons";
 
 const Applicant = () => {
-  const { job } = useLocalSearchParams();
+  const params = useLocalSearchParams();
+  let { job } = params;
   const { user } = useUserStore();
   const [open, setOpen] = React.useState(false);
   const animatedRotation = useRef(new Animated.Value(0)).current;
@@ -36,6 +37,10 @@ const Applicant = () => {
     outputRange: ["0deg", "180deg"],
   });
 
+  if (!user || !job) {
+    return <></>;
+  }
+
   const { title, experiencia, modalidad, publisher, description, applicant } =
     user.publications.filter((pub) => pub.id === Number(job))[0];
 
@@ -46,7 +51,7 @@ const Applicant = () => {
           onPress={toggleDespliegue}
           underlayColor={"transparent"}
         >
-          <View style={styles.header}>
+          <View style={open ? styles.headerActive : styles.header}>
             <Text style={styles.title}>{title}</Text>
             <Animated.View
               style={{
@@ -111,6 +116,15 @@ const styles = StyleSheet.create({
     paddingVertical: 26,
   },
   header: {
+    backgroundColor: "#D1F7FA",
+    paddingVertical: 18,
+    paddingHorizontal: 20,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: "100%",
+  },
+  headerActive: {
     backgroundColor: "#EFFEFF",
     paddingVertical: 18,
     paddingHorizontal: 20,
@@ -121,17 +135,6 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: "#1AD9E5",
   },
-  headerActive: {
-    backgroundColor: "#D1F7FA",
-    paddingVertical: 18,
-    paddingHorizontal: 20,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    width: "100%",
-    borderBottomWidth: 2,
-    borderBottomColor: "#1F2269",
-  },
   title: {
     fontSize: 16,
     fontFamily: "Roboto_400Regular",
@@ -141,7 +144,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 16,
     fontFamily: "Roboto_500Medium",
-    marginBottom: 20,
+    marginBottom: 16,
     textAlign: "center",
   },
   sectionItem: {
@@ -151,7 +154,7 @@ const styles = StyleSheet.create({
   sectionDescription: {
     fontSize: 16,
     fontFamily: "Roboto_400Regular",
-    marginTop: 20,
+    marginTop: 16,
   },
   applicants: {
     width: "100%",
