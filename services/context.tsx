@@ -5,6 +5,15 @@ type UserState = {
     email: string;
     name: string;
     firstTime: boolean;
+    publications: {
+      id: number;
+      title: string;
+      publisher: string;
+      vacantes: number;
+      aspirantes: number;
+      experiencia: string;
+      modalidad: string;
+    }[];
   };
   setUser: (user: UserState["user"]) => void;
 };

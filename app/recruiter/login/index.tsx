@@ -18,6 +18,7 @@ import {
 } from "../../../assets/icons/icons";
 import { Link, useRouter } from "expo-router";
 import useUserStore from "../../../services/context";
+import { dataList } from "../../../assets/info/jobsList";
 
 const login = () => {
   const router = useRouter();
@@ -58,6 +59,8 @@ const login = () => {
           : "Juancito",
       firstTime:
         email.toLocaleLowerCase() === "jorgito@gmail.com" ? true : false,
+      publications:
+        email.toLocaleLowerCase() === "jorgito@gmail.com" ? dataList : [],
     });
 
     router.replace("/recruiter/home");

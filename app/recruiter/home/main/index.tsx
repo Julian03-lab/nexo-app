@@ -1,5 +1,6 @@
 import {
   SafeAreaView,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -16,14 +17,6 @@ import OfferCard from "../../../../components/recruiter/offerCard";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from "expo-router/src/hooks";
 import useUserStore from "../../../../services/context";
-
-const data = {
-  vacantes: 2,
-  aspirantes: 4,
-  experiencia: "1 año",
-  modalidad: "Remoto",
-  salario: "$ 20.000",
-};
 
 const main = () => {
   const [firstTime, setFirstTime] = React.useState(true);
@@ -46,53 +39,62 @@ const main = () => {
 
   return (
     <SafeAreaView style={styles.containter}>
-      {firstTime && <HandIcon style={styles.handIcon} />}
-      <View style={styles.header}>
-        <Text style={styles.title}>¡Hola {user.name}!</Text>
-        <Text style={styles.subtitle}>
-          Este es un resumen de tus publicaciones
-        </Text>
-        <View style={styles.inputContainer}>
-          <SearchIcon style={styles.searchIcon} />
-          <TextInput
-            keyboardType="web-search"
-            style={styles.searchInput}
-            placeholder="Buscar"
-            placeholderTextColor="rgba(31, 34, 105, 0.50)"
-          />
+      <ScrollView>
+        {firstTime && <HandIcon style={styles.handIcon} />}
+        <View style={styles.header}>
+          <Text style={styles.title}>¡Hola {user.name}!</Text>
+          <Text style={styles.subtitle}>
+            Este es un resumen de tus publicaciones
+          </Text>
+          <View style={styles.inputContainer}>
+            <SearchIcon style={styles.searchIcon} />
+            <TextInput
+              keyboardType="web-search"
+              style={styles.searchInput}
+              placeholder="Buscar"
+              placeholderTextColor="rgba(31, 34, 105, 0.50)"
+            />
+          </View>
         </View>
-      </View>
-      <View
-        style={{ marginTop: 30, paddingHorizontal: 20, alignItems: "center" }}
-      >
-        <Text
+        <View
           style={{
-            fontSize: 16,
-            fontFamily: "Roboto_400Regular",
-            color: "#1F2269",
-            textAlign: "center",
-            marginBottom: 30,
+            paddingVertical: 30,
+            paddingHorizontal: 20,
+            alignItems: "center",
+            gap: 20,
           }}
         >
-          Actualmente no hay empleos publicados. Para hacerlo, haz clic en el
-          botón "Publicar" o si prefieres también puedes hacerlo en la barra de
-          navegación.
-        </Text>
-        <TouchableHighlight
-          onPress={() => router.push("/recruiter/home/publish")}
-          style={{
-            borderRadius: 200,
-          }}
-          underlayColor="transparent"
-        >
-          <PublishButtonSVG />
-        </TouchableHighlight>
-        {/* <OfferCard
-          data={data}
-          title="Desarrollador Full Stack Senior"
-          publisher="ABC Tecnology"
-        /> */}
-      </View>
+          {user.publications.length === 0 && (
+            <>
+              <Text
+                style={{
+                  fontSize: 16,
+                  fontFamily: "Roboto_400Regular",
+                  color: "#1F2269",
+                  textAlign: "center",
+                  marginBottom: 30,
+                }}
+              >
+                Actualmente no hay empleos publicados. Para hacerlo, haz clic en
+                el botón "Publicar" o si prefieres también puedes hacerlo en la
+                barra de navegación.
+              </Text>
+              <TouchableHighlight
+                onPress={() => router.push("/recruiter/home/publish")}
+                style={{
+                  borderRadius: 200,
+                }}
+                underlayColor="transparent"
+              >
+                <PublishButtonSVG />
+              </TouchableHighlight>
+            </>
+          )}
+          {user.publications.map((item) => (
+            <OfferCard key={item.id} data={item} />
+          ))}
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };

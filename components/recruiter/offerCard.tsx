@@ -16,18 +16,17 @@ import DeleteModal from "./DeleteModal";
 import { useRouter } from "expo-router";
 
 type OfferCardProps = {
-  title: string;
-  publisher: string;
   data: {
+    title: string;
+    publisher: string;
     vacantes: number;
     aspirantes: number;
     experiencia: string;
     modalidad: string;
-    salario: string;
   };
 };
 
-const OfferCard = ({ data, title, publisher }: OfferCardProps) => {
+const OfferCard = ({ data }: OfferCardProps) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
   const animatedHeight = useRef(new Animated.Value(0)).current;
@@ -56,8 +55,8 @@ const OfferCard = ({ data, title, publisher }: OfferCardProps) => {
       >
         <MenuIcon />
       </TouchableHighlight>
-      <Text style={styles.title}>{title}</Text>
-      <Text style={styles.title}>{publisher}</Text>
+      <Text style={styles.title}>{data.title}</Text>
+      <Text style={styles.title}>{data.publisher}</Text>
       <View style={{ paddingHorizontal: 10 }}>
         <Text style={styles.item}>{`\u2022 Vacantes/${data.vacantes}`}</Text>
         <Text
@@ -67,7 +66,6 @@ const OfferCard = ({ data, title, publisher }: OfferCardProps) => {
           style={styles.item}
         >{`\u2022 Experiencia/${data.experiencia}`}</Text>
         <Text style={styles.item}>{`\u2022 Modalidad/${data.modalidad}`}</Text>
-        <Text style={styles.item}>{`\u2022 Salario/${data.salario}`}</Text>
       </View>
       <View style={{ height: 1, backgroundColor: "#1AD9E5", marginTop: 10 }} />
       <Animated.View style={{ height: animatedHeight, overflow: "hidden" }}>
@@ -75,7 +73,7 @@ const OfferCard = ({ data, title, publisher }: OfferCardProps) => {
           <TouchableHighlight
             underlayColor="transparent"
             activeOpacity={0.5}
-            onPress={() => router.push(`/recruiter/home/main/${title}`)}
+            onPress={() => router.push(`/recruiter/home/main/${data.title}`)}
           >
             <View style={styles.menuItem}>
               <PersonIcon />
@@ -111,12 +109,14 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     borderRadius: 5,
     elevation: 2,
+    width: "100%",
   },
   title: {
     fontSize: 16,
     fontFamily: "Roboto_500Medium",
     color: "#1F2269",
     paddingHorizontal: 10,
+    width: 300,
   },
   menuIcon: {
     position: "absolute",
