@@ -13,29 +13,34 @@ import { useState } from "react";
 const DeleteModal = ({
   modalVisible,
   setModalVisible,
+  callback,
+  id,
 }: {
   modalVisible: boolean;
   setModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  callback: any;
+  id: number;
 }) => {
   const [eliminado, setEliminado] = useState(false);
+
+  const handleDelete = () => {
+    callback(id);
+    setEliminado(false);
+    setModalVisible(!modalVisible);
+  };
+
   return (
     <Modal
       animationType="fade"
       transparent={true}
       visible={modalVisible}
       statusBarTranslucent={true}
-      onRequestClose={() => {
-        setEliminado(false);
-        setModalVisible(!modalVisible);
-      }}
+      onRequestClose={handleDelete}
     >
       <TouchableOpacity
         style={styles.centeredView}
         activeOpacity={1}
-        onPressOut={() => {
-          setEliminado(false);
-          setModalVisible(false);
-        }}
+        onPressOut={handleDelete}
       >
         <TouchableWithoutFeedback>
           <View style={styles.modalView}>
@@ -64,7 +69,9 @@ const DeleteModal = ({
                   </Text>
                 </TouchableHighlight>
                 <TouchableHighlight
-                  onPress={() => setEliminado(!eliminado)}
+                  onPress={() => {
+                    setEliminado(true);
+                  }}
                   style={styles.secondButton}
                   underlayColor="rgba(31, 34, 105, 0.20)"
                 >

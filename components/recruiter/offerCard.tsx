@@ -14,6 +14,7 @@ import {
 } from "../../assets/icons/icons";
 import DeleteModal from "./DeleteModal";
 import { useRouter } from "expo-router";
+import useUserStore from "../../services/context";
 
 type OfferCardProps = {
   data: {
@@ -23,6 +24,7 @@ type OfferCardProps = {
     aspirantes: number;
     experiencia: string;
     modalidad: string;
+    id: number;
   };
 };
 
@@ -31,6 +33,12 @@ const OfferCard = ({ data }: OfferCardProps) => {
   const [deleteModal, setDeleteModal] = useState(false);
   const animatedHeight = useRef(new Animated.Value(0)).current;
   const router = useRouter();
+  const { user, setUser } = useUserStore();
+
+  const deleteItem = (id: number) => {
+    const data = user.publications.filter((item) => item.id !== id);
+    setUser({ ...user, publications: data });
+  };
 
   const toggleDespliegue = () => {
     setMenuOpen(!menuOpen);
@@ -46,6 +54,8 @@ const OfferCard = ({ data }: OfferCardProps) => {
       <DeleteModal
         modalVisible={deleteModal}
         setModalVisible={setDeleteModal}
+        callback={deleteItem}
+        id={data.id}
       />
       <TouchableHighlight
         underlayColor="transparent"

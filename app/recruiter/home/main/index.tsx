@@ -21,7 +21,7 @@ import useUserStore from "../../../../services/context";
 const main = () => {
   const [firstTime, setFirstTime] = React.useState(true);
   const [search, setSearch] = React.useState("");
-  const { user } = useUserStore();
+  const { user, setUser } = useUserStore();
   const router = useRouter();
 
   useEffect(() => {
