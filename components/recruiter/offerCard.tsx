@@ -13,6 +13,7 @@ import {
   PersonIcon,
 } from "../../assets/icons/icons";
 import DeleteModal from "./DeleteModal";
+import { useRouter } from "expo-router";
 
 type OfferCardProps = {
   title: string;
@@ -30,6 +31,7 @@ const OfferCard = ({ data, title, publisher }: OfferCardProps) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
   const animatedHeight = useRef(new Animated.Value(0)).current;
+  const router = useRouter();
 
   const toggleDespliegue = () => {
     setMenuOpen(!menuOpen);
@@ -70,10 +72,16 @@ const OfferCard = ({ data, title, publisher }: OfferCardProps) => {
       <View style={{ height: 1, backgroundColor: "#1AD9E5", marginTop: 10 }} />
       <Animated.View style={{ height: animatedHeight, overflow: "hidden" }}>
         <View style={styles.menu}>
-          <View style={styles.menuItem}>
-            <PersonIcon />
-            <Text style={styles.menuText}>Aspirante</Text>
-          </View>
+          <TouchableHighlight
+            underlayColor="transparent"
+            activeOpacity={0.5}
+            onPress={() => router.push(`/recruiter/home/main/${title}`)}
+          >
+            <View style={styles.menuItem}>
+              <PersonIcon />
+              <Text style={styles.menuText}>Aspirante</Text>
+            </View>
+          </TouchableHighlight>
           <View style={styles.menuItem}>
             <EditIcon />
             <Text style={styles.menuText}>Editar</Text>

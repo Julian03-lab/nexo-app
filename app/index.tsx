@@ -10,8 +10,10 @@ import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
+import useUserStore from "../services/context";
 
 const SelectorPage = () => {
+  const { user } = useUserStore();
   const router = useRouter();
   return (
     <SafeAreaView style={{ paddingTop: 12 }}>
@@ -48,7 +50,11 @@ const SelectorPage = () => {
             contentFit="cover"
           />
         </View>
-        <TouchableHighlight onPress={() => router.push("/recruiter/")}>
+        <TouchableHighlight
+          onPress={() =>
+            user ? router.push("/recruiter/home") : router.push("/recruiter/")
+          }
+        >
           <View style={styles.section}>
             <LinearGradient
               colors={["rgba(26, 188, 254, 0.40)", "rgba(26, 188, 254, 0.40)"]}

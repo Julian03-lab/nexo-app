@@ -17,11 +17,51 @@ import {
   LinkedinIcon,
 } from "../../../assets/icons/icons";
 import { Link, useRouter } from "expo-router";
+import useUserStore from "../../../services/context";
 
 const login = () => {
   const router = useRouter();
+  const { setUser } = useUserStore();
   const passwordRef = useRef(null);
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
+
+  const handleSubmit = () => {
+    if (email === "") {
+      console.log("email is empty");
+      return;
+    }
+    if (password === "") {
+      console.log("password is empty");
+      return;
+    }
+    if (
+      email.toLocaleLowerCase() !== "jorgito@gmail.com" &&
+      email.toLocaleLowerCase() !== "juancito@gmail.com"
+    ) {
+      console.log("email is wrong");
+      return;
+    }
+
+    if (password !== "123456") {
+      console.log("password is wrong");
+      return;
+    }
+
+    setUser({
+      email,
+      name:
+        email.toLocaleLowerCase() === "jorgito@gmail.com"
+          ? "Jorgito"
+          : "Juancito",
+      firstTime:
+        email.toLocaleLowerCase() === "jorgito@gmail.com" ? true : false,
+    });
+
+    router.replace("/recruiter/home");
+  };
 
   return (
     <SafeAreaView
@@ -64,6 +104,7 @@ const login = () => {
               enterKeyHint="next"
               onSubmitEditing={() => passwordRef.current.focus()}
               blurOnSubmit={false}
+              onChange={(e) => setEmail(e.nativeEvent.text)}
             />
             <View>
               <TouchableHighlight
@@ -86,6 +127,8 @@ const login = () => {
                 ref={passwordRef}
                 autoComplete="off"
                 keyboardType={!passwordVisible ? "default" : "visible-password"}
+                onChange={(e) => setPassword(e.nativeEvent.text)}
+                onSubmitEditing={handleSubmit}
               />
               <Link
                 href="/recruiter/login/recovery"
@@ -101,7 +144,7 @@ const login = () => {
           </View>
           <View style={styles.buttonArea}>
             <TouchableHighlight
-              onPress={() => router.push("/recruiter/home")}
+              onPress={handleSubmit}
               style={styles.firstButton}
               underlayColor="rgba(31, 34, 105, 0.50)"
             >

@@ -10,8 +10,21 @@ import {
 import React from "react";
 import InputWithLabel from "../../../components/InputWithLabel";
 import { Picker } from "@react-native-picker/picker";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const publish = () => {
+  const setFirstTimePublish = async () => {
+    try {
+      await AsyncStorage.setItem("firstTimePublish", "true");
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  React.useEffect(() => {
+    setFirstTimePublish();
+  }, []);
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
       <ScrollView>

@@ -8,13 +8,24 @@ import {
 import { TouchableOpacity } from "react-native";
 import {
   BackArrowIcon,
+  CheckIcon,
+  DeleteIcon,
   LogOutIcon,
   NotificationIcon,
   PublishIcon,
+  SaveIcon,
 } from "../../../assets/icons/icons";
+import useUserStore from "../../../services/context";
 
 const RecruiterLayout = () => {
   const router = useRouter();
+  const { setUser } = useUserStore();
+
+  const logout = () => {
+    setUser(null);
+    router.replace("/recruiter/");
+  };
+
   return (
     <Tabs
       screenOptions={{
@@ -41,9 +52,9 @@ const RecruiterLayout = () => {
       }}
     >
       <Tabs.Screen
-        name="index"
+        name="main"
         options={{
-          href: "/recruiter/home",
+          href: "/recruiter/home/main",
           headerTitle: (props) => <NexoIcon fill={"#1F2269"} {...props} />,
           tabBarIcon: (props) => (
             <NexoIconEmpty
@@ -62,7 +73,7 @@ const RecruiterLayout = () => {
             paddingLeft: 12,
           },
           headerRight: () => (
-            <TouchableOpacity onPress={() => router.back()}>
+            <TouchableOpacity onPress={logout}>
               <LogOutIcon />
             </TouchableOpacity>
           ),
@@ -72,6 +83,99 @@ const RecruiterLayout = () => {
         }}
       />
 
+      <Tabs.Screen
+        name="priorities"
+        options={{
+          href: "/recruiter/home/priorities",
+          headerTitle: "Prioridades",
+          headerTitleStyle: {
+            fontFamily: "Roboto_700Bold",
+            color: "#1F2269",
+            fontSize: 20,
+          },
+          tabBarIcon: (props) => (
+            <CheckIcon
+              fill={props.focused ? "#ab13ed" : "#767575"}
+              {...props}
+            />
+          ),
+          tabBarLabel: "Prioridades",
+          tabBarActiveTintColor: "#ab13ed",
+          headerLeft: (props) => (
+            <TouchableOpacity onPress={() => router.back()}>
+              <BackArrowIcon />
+            </TouchableOpacity>
+          ),
+          headerLeftContainerStyle: {
+            paddingLeft: 12,
+          },
+          headerRight: () => <NexoIcon fill={"#1F2269"} />,
+          headerRightContainerStyle: {
+            paddingRight: 12,
+          },
+        }}
+      />
+      <Tabs.Screen
+        name="saved"
+        options={{
+          href: "/recruiter/home/saved",
+          headerTitle: "Guardados",
+          headerTitleStyle: {
+            fontFamily: "Roboto_700Bold",
+            color: "#1F2269",
+            fontSize: 20,
+          },
+          tabBarIcon: (props) => (
+            <SaveIcon fill={props.focused ? "#ab13ed" : "#767575"} {...props} />
+          ),
+          tabBarLabel: "Guardados",
+          tabBarActiveTintColor: "#ab13ed",
+          headerLeft: (props) => (
+            <TouchableOpacity onPress={() => router.back()}>
+              <BackArrowIcon />
+            </TouchableOpacity>
+          ),
+          headerLeftContainerStyle: {
+            paddingLeft: 12,
+          },
+          headerRight: () => <NexoIcon fill={"#1F2269"} />,
+          headerRightContainerStyle: {
+            paddingRight: 12,
+          },
+        }}
+      />
+      <Tabs.Screen
+        name="trash"
+        options={{
+          href: "/recruiter/home/trash",
+          headerTitle: "Papelera",
+          headerTitleStyle: {
+            fontFamily: "Roboto_700Bold",
+            color: "#1F2269",
+            fontSize: 20,
+          },
+          tabBarIcon: (props) => (
+            <DeleteIcon
+              fill={props.focused ? "#ab13ed" : "#767575"}
+              {...props}
+            />
+          ),
+          tabBarLabel: "Papelera",
+          tabBarActiveTintColor: "#ab13ed",
+          headerLeft: (props) => (
+            <TouchableOpacity onPress={() => router.back()}>
+              <BackArrowIcon />
+            </TouchableOpacity>
+          ),
+          headerLeftContainerStyle: {
+            paddingLeft: 12,
+          },
+          headerRight: () => <NexoIcon fill={"#1F2269"} />,
+          headerRightContainerStyle: {
+            paddingRight: 12,
+          },
+        }}
+      />
       <Tabs.Screen
         name="publish"
         options={{
