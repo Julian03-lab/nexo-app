@@ -32,8 +32,6 @@ const login = () => {
     password: "",
   });
 
-  console.log(error);
-
   const handleSubmit = () => {
     if (email === "") {
       setError({

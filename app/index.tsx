@@ -4,21 +4,58 @@ import {
   View,
   ScrollView,
   TouchableHighlight,
+  Button,
 } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
 import useUserStore from "../services/context";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const SelectorPage = () => {
   const { user } = useUserStore();
   const router = useRouter();
+  const [viewedOnboarding, setViewedOnboarding] = useState(false);
+
+  const updateViewedOnboarding = async () => {
+    try {
+      await AsyncStorage.removeItem("@viewedOnboarding");
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const value = await AsyncStorage.getItem("@viewedOnboarding");
+        if (value !== null) {
+          setViewedOnboarding(true);
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    };
+
+    getData();
+  }, []);
+
   return (
     <SafeAreaView style={{ paddingTop: 12 }}>
       <ScrollView>
-        <TouchableHighlight onPress={() => router.push("/students/")}>
+        <Button
+          onPress={updateViewedOnboarding}
+          title="Delete viewedOnboarding"
+        />
+        <TouchableHighlight
+          onPress={() =>
+            router.push(
+              !viewedOnboarding ? "/studentsOnboarding/" : "/students"
+            )
+          }
+        >
           <View style={styles.section}>
             <LinearGradient
               colors={["rgba(175, 19, 242, 0.40)", "rgba(175, 19, 242, 0.40)"]}

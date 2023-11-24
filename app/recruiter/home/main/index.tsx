@@ -7,32 +7,16 @@ import {
   TouchableHighlight,
   View,
 } from "react-native";
-import React, { useEffect, useMemo } from "react";
-import {
-  HandIcon,
-  PublishButtonSVG,
-  SearchIcon,
-} from "../../../../assets/icons/icons";
+import React, { useMemo } from "react";
+import { PublishButtonSVG, SearchIcon } from "../../../../assets/icons/icons";
 import OfferCard from "../../../../components/recruiter/offerCard";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from "expo-router/src/hooks";
 import useUserStore from "../../../../services/context";
 
 const main = () => {
-  const [firstTime, setFirstTime] = React.useState(true);
   const [search, setSearch] = React.useState("");
   const { user } = useUserStore();
   const router = useRouter();
-
-  useEffect(() => {
-    const getData = async () => {
-      const data = await AsyncStorage.getItem("firstTimePublish");
-      if (data) {
-        setFirstTime(false);
-      }
-    };
-    getData();
-  }, []);
 
   if (!user) {
     return <></>;
@@ -58,7 +42,6 @@ const main = () => {
   return (
     <SafeAreaView style={styles.containter}>
       <ScrollView>
-        {firstTime && <HandIcon style={styles.handIcon} />}
         <View style={styles.header}>
           <Text style={styles.title}>¡Hola {user.name}!</Text>
           <Text style={styles.subtitle}>

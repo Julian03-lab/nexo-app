@@ -9,8 +9,7 @@ import {
 } from "react-native";
 import InputWithLabel from "../../../../components/InputWithLabel";
 import { Picker } from "@react-native-picker/picker";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "expo-router";
 
 const publish = () => {
@@ -40,18 +39,6 @@ const publish = () => {
       return true;
     }
   };
-
-  const setFirstTimePublish = async () => {
-    try {
-      await AsyncStorage.setItem("firstTimePublish", "true");
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  useEffect(() => {
-    setFirstTimePublish();
-  }, []);
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
