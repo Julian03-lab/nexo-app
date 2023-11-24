@@ -1,12 +1,12 @@
 export type publications = {
   id: number;
-  title: string;
-  publisher: string;
-  vacantes: number;
-  aspirantes: number;
-  experiencia: string;
-  modalidad: string;
-  description: string;
+  title: string | string[];
+  publisher: string | string[];
+  vacantes: number | string | string[];
+  aspirantes: number | string | string[];
+  experiencia: string | string[];
+  modalidad: string | string[];
+  description: string | string[];
   applicant: {
     id: number;
     email: string;

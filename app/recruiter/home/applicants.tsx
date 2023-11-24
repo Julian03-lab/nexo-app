@@ -16,7 +16,7 @@ import { IconArrow } from "../../../assets/icons/icons";
 
 const Applicant = () => {
   const params = useLocalSearchParams();
-  let { job } = params;
+  const { job } = params;
   const { user } = useUserStore();
   const [open, setOpen] = React.useState(false);
   const animatedRotation = useRef(new Animated.Value(0)).current;

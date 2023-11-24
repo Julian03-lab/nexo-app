@@ -1,10 +1,6 @@
 import { Tabs, useRouter } from "expo-router";
 import React from "react";
-import {
-  NexoFullIcon,
-  NexoIcon,
-  NexoIconEmpty,
-} from "../../../assets/icons/nexo-icon";
+import { NexoIcon, NexoIconEmpty } from "../../../assets/icons/nexo-icon";
 import { TouchableOpacity } from "react-native";
 import {
   BackArrowIcon,
@@ -48,7 +44,7 @@ const RecruiterLayout = () => {
         tabBarLabelStyle: {
           fontSize: 12,
         },
-        // headerShown: false,
+        tabBarHideOnKeyboard: true,
       }}
     >
       <Tabs.Screen
@@ -100,35 +96,6 @@ const RecruiterLayout = () => {
             />
           ),
           tabBarLabel: "Prioridades",
-          tabBarActiveTintColor: "#03AEB9",
-          headerLeft: (props) => (
-            <TouchableOpacity onPress={() => router.back()}>
-              <BackArrowIcon />
-            </TouchableOpacity>
-          ),
-          headerLeftContainerStyle: {
-            paddingLeft: 12,
-          },
-          headerRight: () => <NexoIcon fill={"#1F2269"} />,
-          headerRightContainerStyle: {
-            paddingRight: 12,
-          },
-        }}
-      />
-      <Tabs.Screen
-        name="saved"
-        options={{
-          href: "/recruiter/home/saved",
-          headerTitle: "Guardados",
-          headerTitleStyle: {
-            fontFamily: "Roboto_700Bold",
-            color: "#1F2269",
-            fontSize: 20,
-          },
-          tabBarIcon: (props) => (
-            <SaveIcon fill={props.focused ? "#03AEB9" : "#767575"} {...props} />
-          ),
-          tabBarLabel: "Guardados",
           tabBarActiveTintColor: "#03AEB9",
           headerLeft: (props) => (
             <TouchableOpacity onPress={() => router.back()}>

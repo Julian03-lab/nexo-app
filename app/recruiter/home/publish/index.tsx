@@ -7,12 +7,40 @@ import {
   TouchableHighlight,
   View,
 } from "react-native";
-import React from "react";
-import InputWithLabel from "../../../components/InputWithLabel";
+import InputWithLabel from "../../../../components/InputWithLabel";
 import { Picker } from "@react-native-picker/picker";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useEffect, useState } from "react";
+import { useRouter } from "expo-router";
 
 const publish = () => {
+  const [puesto, setPuesto] = useState("");
+  const [empresa, setEmpresa] = useState("");
+  const [descripcion, setDescripcion] = useState("");
+  const [vacantes, setVacantes] = useState("");
+  const [cv, setCv] = useState("");
+  const [modo, setModo] = useState("Remoto");
+  const [experiencia, setExperiencia] = useState("Senior");
+  const [link, setLink] = useState("");
+  const router = useRouter();
+
+  const verifyForm = () => {
+    if (
+      puesto === "" ||
+      empresa === "" ||
+      descripcion === "" ||
+      vacantes === "" ||
+      cv === "" ||
+      modo === "" ||
+      experiencia === "" ||
+      link === ""
+    ) {
+      return false;
+    } else {
+      return true;
+    }
+  };
+
   const setFirstTimePublish = async () => {
     try {
       await AsyncStorage.setItem("firstTimePublish", "true");
@@ -21,7 +49,7 @@ const publish = () => {
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     setFirstTimePublish();
   }, []);
 
@@ -37,15 +65,19 @@ const publish = () => {
           <InputWithLabel label="Puesto solicitado">
             <TextInput
               style={styles.input}
-              placeholder="Ej. Desarrollador Frontend"
+              placeholder="Desarrollador Frontend"
               placeholderTextColor={"#BCBABA"}
+              value={puesto}
+              onChangeText={(text) => setPuesto(text)}
             />
           </InputWithLabel>
           <InputWithLabel label="Empresa">
             <TextInput
               style={styles.input}
-              placeholder="Ej. Desarrollador Frontend"
+              placeholder="TechNova"
               placeholderTextColor={"#BCBABA"}
+              value={empresa}
+              onChangeText={(text) => setEmpresa(text)}
             />
           </InputWithLabel>
           <InputWithLabel label="Descripcion del empleo">
@@ -54,62 +86,87 @@ const publish = () => {
               placeholderTextColor={"#BCBABA"}
               multiline={true}
               numberOfLines={4}
-              placeholder="Ej. Desarrollador Frontend"
+              placeholder="Describe brevemente las características del empleo, la información debe ser  precisa. ¡Buena suerte con tu búsqueda de candidatos!"
+              value={descripcion}
+              onChangeText={(text) => setDescripcion(text)}
             />
           </InputWithLabel>
           <InputWithLabel label="Vacantes">
             <TextInput
               style={styles.input}
-              placeholder="Ej. Desarrollador Frontend"
+              placeholder="3"
               placeholderTextColor={"#BCBABA"}
+              keyboardType="numeric"
+              value={vacantes}
+              onChangeText={(text) => setVacantes(text)}
             />
           </InputWithLabel>
           <InputWithLabel label="Cantidad de CV a recibir">
             <TextInput
               style={styles.input}
-              placeholder="Ej. Desarrollador Frontend"
+              placeholder="10"
               placeholderTextColor={"#BCBABA"}
+              keyboardType="numeric"
+              value={cv}
+              onChangeText={(text) => setCv(text)}
             />
           </InputWithLabel>
           <InputWithLabel label="Modo">
             <View style={styles.inputSelect}>
               <Picker
-                selectedValue={"remoto"}
-                onValueChange={(itemValue, itemIndex) => console.log(itemValue)}
+                selectedValue={modo}
+                onValueChange={(itemValue) => setModo(itemValue)}
                 mode="dropdown"
               >
-                <Picker.Item label="Remoto" value="remoto" />
-                <Picker.Item label="Presencial" value="presencial" />
-                <Picker.Item label="Hibrido" value="hibrido" />
+                <Picker.Item label="Remoto" value="Remoto" />
+                <Picker.Item label="Presencial" value="Presencial" />
+                <Picker.Item label="Hibrido" value="Hibrido" />
               </Picker>
             </View>
           </InputWithLabel>
           <InputWithLabel label="Experiencia">
             <View style={styles.inputSelect}>
               <Picker
-                selectedValue={"junior"}
-                onValueChange={(itemValue, itemIndex) => console.log(itemValue)}
+                selectedValue={experiencia}
+                onValueChange={(itemValue) => setExperiencia(itemValue)}
                 mode="dropdown"
               >
-                <Picker.Item label="Training" value="training" />
-                <Picker.Item label="Junior" value="junior" />
-                <Picker.Item label="Semi Senior" value="semisenior" />
-                <Picker.Item label="Senior" value="senior" />
+                <Picker.Item label="Training" value="Training" />
+                <Picker.Item label="Junior" value="Junior" />
+                <Picker.Item label="Semi Senior" value="SemiSenior" />
+                <Picker.Item label="Senior" value="Senior" />
               </Picker>
             </View>
           </InputWithLabel>
           <InputWithLabel label="Link a formulario">
             <TextInput
               style={styles.input}
-              placeholder="Ej. Desarrollador Frontend"
+              placeholder="https://docs.google.com/forms/d/e/1FAIpQLSeI8_vYyaJgM7SJM4Y9AWfLq-tglWZh6yt7bEXEOJr_L-hV1A/viewform?formkey=dGx0b1ZrTnoyZDgtYXItMWVBdVlQQWc6MQ"
               placeholderTextColor={"#BCBABA"}
+              value={link}
+              onChangeText={(text) => setLink(text)}
             />
           </InputWithLabel>
         </View>
-        <View style={{ gap: 20, paddingHorizontal: 20 }}>
+        <View style={{ gap: 20, paddingHorizontal: 20, paddingBottom: 44 }}>
           <TouchableHighlight
-            onPress={() => console.log("press")}
-            style={styles.firstButton}
+            disabled={!verifyForm()}
+            onPress={() =>
+              router.push({
+                pathname: "/recruiter/home/publish/submit",
+                params: {
+                  puesto,
+                  empresa,
+                  descripcion,
+                  vacantes,
+                  cv,
+                  modo,
+                  experiencia,
+                  link,
+                },
+              })
+            }
+            style={{ ...styles.firstButton, opacity: verifyForm() ? 1 : 0.5 }}
             underlayColor="rgba(31, 34, 105, 0.50)"
           >
             <Text
