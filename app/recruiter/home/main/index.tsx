@@ -42,9 +42,17 @@ const main = () => {
     if (search === "") {
       return user.publications;
     }
-    return user.publications.filter((item) =>
-      item.title.toLocaleLowerCase().includes(search.toLocaleLowerCase())
-    );
+    return user.publications.filter((item) => {
+      if (Array.isArray(item.title)) {
+        return item.title.some((title) =>
+          title.toLocaleLowerCase().includes(search.toLocaleLowerCase())
+        );
+      } else {
+        return item.title
+          .toLocaleLowerCase()
+          .includes(search.toLocaleLowerCase());
+      }
+    });
   }, [search, user.publications]);
 
   return (

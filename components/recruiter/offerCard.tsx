@@ -15,22 +15,16 @@ import {
 import DeleteModal from "./DeleteModal";
 import { useRouter } from "expo-router";
 import useUserStore from "../../services/context";
+import NoApplicantModal from "./noApplicantsModal";
 
 type OfferCardProps = {
-  data: {
-    title: string;
-    publisher: string;
-    vacantes: number;
-    aspirantes: number;
-    experiencia: string;
-    modalidad: string;
-    id: number;
-  };
+  data: any;
 };
 
 const OfferCard = ({ data }: OfferCardProps) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
+  const [noApplicant, setNoApplicant] = useState(false);
   const animatedHeight = useRef(new Animated.Value(0)).current;
   const router = useRouter();
   const { user, setUser } = useUserStore();
@@ -56,6 +50,10 @@ const OfferCard = ({ data }: OfferCardProps) => {
         setModalVisible={setDeleteModal}
         callback={deleteItem}
         id={data.id}
+      />
+      <NoApplicantModal
+        modalVisible={noApplicant}
+        setModalVisible={setNoApplicant}
       />
       <TouchableHighlight
         underlayColor="transparent"
@@ -84,10 +82,12 @@ const OfferCard = ({ data }: OfferCardProps) => {
             underlayColor="transparent"
             activeOpacity={0.5}
             onPress={() =>
-              router.push({
-                pathname: "/recruiter/home/applicants",
-                params: { job: data.id },
-              })
+              data.applicant.length > 0
+                ? router.push({
+                    pathname: "/recruiter/home/applicants",
+                    params: { job: data.id },
+                  })
+                : setNoApplicant(true)
             }
           >
             <View style={styles.menuItem}>

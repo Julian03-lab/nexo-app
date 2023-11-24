@@ -24,6 +24,11 @@ const DeleteModal = ({
   const [eliminado, setEliminado] = useState(false);
 
   const handleDelete = () => {
+    if (!eliminado) {
+      setModalVisible(!modalVisible);
+      return;
+    }
+
     callback(id);
     setEliminado(false);
     setModalVisible(!modalVisible);

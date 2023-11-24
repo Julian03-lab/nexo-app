@@ -2,24 +2,20 @@ import {
   Modal,
   StyleSheet,
   Text,
-  TouchableHighlight,
   TouchableOpacity,
   TouchableWithoutFeedback,
   View,
 } from "react-native";
-import { PublishIcon } from "../../assets/icons/icons";
+import { PersonIcon } from "../../assets/icons/icons";
 
-const SubmitModal = ({
+const NoApplicantModal = ({
   modalVisible,
   setModalVisible,
-  callback,
 }: {
   modalVisible: boolean;
   setModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
-  callback: any;
 }) => {
   const handleSubmit = () => {
-    callback();
     setModalVisible(!modalVisible);
   };
 
@@ -39,27 +35,11 @@ const SubmitModal = ({
         <TouchableWithoutFeedback>
           <View style={styles.modalView}>
             <View style={styles.icon}>
-              <PublishIcon fill={"#1AD9E5"} width={52} height={52} />
+              <PersonIcon fill={"#1AD9E5"} width={52} height={52} />
             </View>
             <Text style={styles.modalTitle}>
-              El empleo se publicó con éxito
+              Por el momento no hay aspirantes
             </Text>
-            <TouchableHighlight
-              onPress={handleSubmit}
-              style={styles.firstButton}
-              underlayColor="rgba(31, 34, 105, 0.50)"
-            >
-              <Text
-                style={{
-                  color: "#fff",
-                  textAlign: "center",
-                  fontSize: 16,
-                  fontFamily: "Roboto_500Medium",
-                }}
-              >
-                Home
-              </Text>
-            </TouchableHighlight>
           </View>
         </TouchableWithoutFeedback>
       </TouchableOpacity>
@@ -67,7 +47,7 @@ const SubmitModal = ({
   );
 };
 
-export default SubmitModal;
+export default NoApplicantModal;
 
 const styles = StyleSheet.create({
   centeredView: {
@@ -79,17 +59,17 @@ const styles = StyleSheet.create({
   modalView: {
     backgroundColor: "white",
     borderRadius: 5,
-    paddingHorizontal: 20,
-    paddingTop: 50,
-    paddingBottom: 15,
+    paddingHorizontal: 48,
+    paddingTop: 52,
+    paddingBottom: 41,
     alignItems: "center",
     gap: 15,
     width: "90%",
   },
   modalTitle: {
     textAlign: "center",
-    fontSize: 16,
-    fontFamily: "Roboto_500Medium",
+    fontSize: 20,
+    fontFamily: "Roboto_700Bold",
     color: "#1F2269",
     marginBottom: 2,
   },
@@ -105,27 +85,6 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     padding: 8,
     position: "absolute",
-    top: "-15%",
-  },
-  firstButton: {
-    backgroundColor: "#1F2269",
-    borderRadius: 100,
-    paddingVertical: 12,
-    width: "100%",
-  },
-  secondButton: {
-    backgroundColor: "#fff",
-    borderRadius: 100,
-    paddingVertical: 12,
-    borderColor: "#FF6363",
-    borderWidth: 1,
-    width: "100%",
-  },
-  eliminatedText: {
-    textAlign: "center",
-    fontSize: 20,
-    fontFamily: "Roboto_700Bold",
-    color: "#1F2269",
-    marginVertical: 34,
+    top: "-30%",
   },
 });
