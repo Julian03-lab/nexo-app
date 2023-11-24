@@ -27,40 +27,67 @@ const login = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(false);
+  const [error, setError] = useState({
+    email: "",
+    password: "",
+  });
+
+  console.log(error);
 
   const handleSubmit = () => {
     if (email === "") {
-      console.log("email is empty");
+      setError({
+        email: "El correo electrónico es requerido",
+        password: "",
+      });
       return;
     }
     if (password === "") {
-      console.log("password is empty");
+      setError({
+        email: "",
+        password: "La contraseña es requerida",
+      });
       return;
     }
     if (
-      email.toLocaleLowerCase() !== "jorgito@gmail.com" &&
-      email.toLocaleLowerCase() !== "juancito@gmail.com"
+      email.toLocaleLowerCase() !== "ana.garcia@example.com" &&
+      email.toLocaleLowerCase() !== "bruno.ortiz@example.com"
     ) {
-      console.log("email is wrong");
+      setError({
+        email: "El correo electrónico es inválido",
+        password: "",
+      });
       return;
     }
 
-    if (password !== "123456") {
-      console.log("password is wrong");
-      return;
+    if (email.toLocaleLowerCase() === "ana.garcia@example.com") {
+      if (password !== "Aa1luna") {
+        setError({
+          email: "",
+          password: "La contraseña es incorrecta",
+        });
+        return;
+      }
+    }
+
+    if (email.toLocaleLowerCase() === "bruno.ortiz@example.com") {
+      if (password !== "Bb2carro") {
+        setError({
+          email: "",
+          password: "La contraseña es incorrecta",
+        });
+        return;
+      }
     }
 
     setUser({
       email,
       name:
-        email.toLocaleLowerCase() === "jorgito@gmail.com"
-          ? "Jorgito"
-          : "Juancito",
-      firstTime:
-        email.toLocaleLowerCase() === "jorgito@gmail.com" ? true : false,
+        email.toLocaleLowerCase() === "ana.garcia@example.com"
+          ? "Ana García"
+          : "Bruno Ortiz",
       publications:
-        email.toLocaleLowerCase() === "jorgito@gmail.com" ? dataList : [],
+        email.toLocaleLowerCase() === "bruno.ortiz@example.com" ? dataList : [],
     });
 
     router.replace("/recruiter/home");
@@ -98,17 +125,29 @@ const login = () => {
             ></View>
           </View>
           <View style={styles.inputArea}>
-            <TextInput
-              style={styles.input}
-              placeholder="Correo electrónico"
-              placeholderTextColor="rgba(31, 34, 105, 0.50)"
-              keyboardType="email-address"
-              autoComplete="email"
-              enterKeyHint="next"
-              onSubmitEditing={() => passwordRef.current.focus()}
-              blurOnSubmit={false}
-              onChange={(e) => setEmail(e.nativeEvent.text)}
-            />
+            <View>
+              <TextInput
+                style={styles.input}
+                placeholder="Correo electrónico"
+                placeholderTextColor="rgba(31, 34, 105, 0.50)"
+                keyboardType="email-address"
+                autoComplete="email"
+                enterKeyHint="next"
+                onSubmitEditing={() => passwordRef.current.focus()}
+                blurOnSubmit={false}
+                onChange={(e) => setEmail(e.nativeEvent.text)}
+              />
+
+              <Text
+                style={{
+                  color: "#FF5C5C",
+                  fontFamily: "Roboto_400Regular",
+                  fontSize: 11,
+                }}
+              >
+                {error.email}
+              </Text>
+            </View>
             <View>
               <TouchableHighlight
                 onPress={() => setPasswordVisible(!passwordVisible)}
@@ -133,16 +172,28 @@ const login = () => {
                 onChange={(e) => setPassword(e.nativeEvent.text)}
                 onSubmitEditing={handleSubmit}
               />
-              <Link
-                href="/recruiter/login/recovery"
-                style={{
-                  color: "#0076B2",
-                  fontFamily: "Roboto_400Regular",
-                  fontSize: 11,
-                }}
-              >
-                Olvide mi contraseña
-              </Link>
+              {error.password ? (
+                <Text
+                  style={{
+                    color: "#FF5C5C",
+                    fontFamily: "Roboto_400Regular",
+                    fontSize: 11,
+                  }}
+                >
+                  {error.password}
+                </Text>
+              ) : (
+                <Link
+                  href="/recruiter/login/recovery"
+                  style={{
+                    color: "#0076B2",
+                    fontFamily: "Roboto_400Regular",
+                    fontSize: 11,
+                  }}
+                >
+                  Olvide mi contraseña
+                </Link>
+              )}
             </View>
           </View>
           <View style={styles.buttonArea}>

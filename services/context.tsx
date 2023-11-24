@@ -5,7 +5,6 @@ type UserState = {
   user: {
     email: string;
     name: string;
-    firstTime: boolean;
     publications: publications[];
   };
   setUser: (user: UserState["user"]) => void;
