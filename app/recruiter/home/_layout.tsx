@@ -12,15 +12,10 @@ import {
   SaveIcon,
 } from "../../../assets/icons/icons";
 import useUserStore from "../../../services/context";
+import LogoutButton from "../../../components/recruiter/LogoutButton";
 
 const RecruiterLayout = () => {
   const router = useRouter();
-  const { setUser } = useUserStore();
-
-  const logout = () => {
-    setUser(null);
-    router.replace("/recruiter/");
-  };
 
   return (
     <Tabs
@@ -68,11 +63,7 @@ const RecruiterLayout = () => {
           headerLeftContainerStyle: {
             paddingLeft: 12,
           },
-          headerRight: () => (
-            <TouchableOpacity onPress={logout}>
-              <LogOutIcon />
-            </TouchableOpacity>
-          ),
+          headerRight: () => <LogoutButton />,
           headerRightContainerStyle: {
             paddingRight: 12,
           },
