@@ -2,13 +2,16 @@ import { StyleSheet, Text, TouchableHighlight, View } from "react-native";
 import React from "react";
 import StatColumn from "./StatColumn";
 import { PersonIconFilled } from "../../assets/icons/icons";
+import { useRouter } from "expo-router";
 
 type OfferStatsProps = {
   selectColumn: React.Dispatch<React.SetStateAction<number>>;
   column: number;
+  offerId: number;
 };
 
-const OfferStats = ({ column, selectColumn }: OfferStatsProps) => {
+const OfferStats = ({ column, selectColumn, offerId }: OfferStatsProps) => {
+  const router = useRouter();
   const handlePress = (columnToSelect: number) => {
     if (column === null || column !== columnToSelect) {
       selectColumn(columnToSelect);
@@ -286,22 +289,29 @@ const OfferStats = ({ column, selectColumn }: OfferStatsProps) => {
           </Text>
         </View>
       </View>
-      <TouchableHighlight
-        onPress={() => {}}
-        style={styles.button}
-        underlayColor="rgba(31, 34, 105, 0.20)"
-      >
-        <Text
-          style={{
-            color: "#1F2269",
-            textAlign: "center",
-            fontSize: 16,
-            fontFamily: "Roboto_500Medium",
-          }}
+      {column && (
+        <TouchableHighlight
+          onPress={() =>
+            router.push({
+              pathname: "/recruiter/home/filterApplicants",
+              params: { column, offerId },
+            })
+          }
+          style={styles.button}
+          underlayColor="rgba(31, 34, 105, 0.20)"
         >
-          Filtrar
-        </Text>
-      </TouchableHighlight>
+          <Text
+            style={{
+              color: "#1F2269",
+              textAlign: "center",
+              fontSize: 16,
+              fontFamily: "Roboto_500Medium",
+            }}
+          >
+            Filtrar
+          </Text>
+        </TouchableHighlight>
+      )}
     </>
   );
 };

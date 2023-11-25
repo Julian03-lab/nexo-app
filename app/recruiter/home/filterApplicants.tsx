@@ -5,24 +5,26 @@ import {
   ScrollView,
   StyleSheet,
   Text,
+  TextInput,
   TouchableHighlight,
   View,
 } from "react-native";
-import React, { useMemo, useRef } from "react";
-import { useLocalSearchParams } from "expo-router";
+import React, { useRef } from "react";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import useUserStore from "../../../services/context";
 import ApplicantCard from "../../../components/recruiter/applicantCard";
 import { IconArrow } from "../../../assets/icons/icons";
-import OfferStats from "../../../components/recruiter/OfferStats";
+import InputWithLabel from "../../../components/InputWithLabel";
+import MessageSendedModal from "../../../components/recruiter/MessageSendedModal";
 
 const Applicant = () => {
   const params = useLocalSearchParams();
-  const { job } = params;
+  const { offerId, column } = params;
   const { user } = useUserStore();
   const [open, setOpen] = React.useState(false);
-  const [colSelected, setColSelected] = React.useState<null | number>(null);
-  const [stasVisible, setStasVisible] = React.useState(false);
   const animatedRotation = useRef(new Animated.Value(0)).current;
+  const [modal, setModal] = React.useState(false);
+  const router = useRouter();
 
   const toggleDespliegue = () => {
     setOpen(!open);
@@ -40,23 +42,25 @@ const Applicant = () => {
     outputRange: ["0deg", "180deg"],
   });
 
-  if (!user || !job) {
+  if (!user || !offerId) {
     return <></>;
   }
 
   const { title, experiencia, modalidad, publisher, description, applicant } =
-    user.publications.filter((pub) => pub.id === Number(job))[0];
+    user.publications.filter((pub) => pub.id === Number(offerId))[0];
 
-  const filteredApplicants = useMemo(() => {
-    if (colSelected === null) {
-      return applicant;
-    }
-    return applicant.filter((app) => app.column === colSelected);
-  }, [colSelected, applicant]);
+  const filteredApplicants = applicant.filter(
+    (app) => app.column === Number(column)
+  );
 
   return (
     <SafeAreaView style={styles.containter}>
       <ScrollView>
+        <MessageSendedModal
+          modalVisible={modal}
+          setModalVisible={setModal}
+          callback={() => router.replace("/recruiter/home")}
+        />
         <TouchableHighlight
           onPress={toggleDespliegue}
           underlayColor={"transparent"}
@@ -73,8 +77,30 @@ const Applicant = () => {
           </View>
         </TouchableHighlight>
         <View style={styles.content}>
+          {open && (
+            <View style={styles.section}>
+              <Text style={styles.sectionTitle}>{title}</Text>
+              <Text style={styles.sectionItem}>{`\u2022 ${publisher}`}</Text>
+              <Text style={styles.sectionItem}>{`\u2022 ${modalidad}`}</Text>
+              <Text style={styles.sectionItem}>{`\u2022 ${experiencia}`}</Text>
+              <Text style={styles.sectionDescription}>{description}</Text>
+            </View>
+          )}
+          <InputWithLabel label="Asunto">
+            <TextInput
+              style={styles.input}
+              placeholder="Escribe tu asunto aqui"
+            />
+          </InputWithLabel>
+          <InputWithLabel label="Escribir mensaje">
+            <TextInput
+              style={styles.input}
+              numberOfLines={4}
+              placeholder="Escribe tu mensaje aqui"
+            />
+          </InputWithLabel>
           <TouchableHighlight
-            onPress={() => setStasVisible(!stasVisible)}
+            onPress={() => setModal(true)}
             style={styles.button}
             underlayColor="rgba(31, 34, 105, 0.20)"
           >
@@ -86,26 +112,9 @@ const Applicant = () => {
                 fontFamily: "Roboto_500Medium",
               }}
             >
-              Ver estadísticas
+              Enviar
             </Text>
           </TouchableHighlight>
-
-          {open && (
-            <View style={styles.section}>
-              <Text style={styles.sectionTitle}>{title}</Text>
-              <Text style={styles.sectionItem}>{`\u2022 ${publisher}`}</Text>
-              <Text style={styles.sectionItem}>{`\u2022 ${modalidad}`}</Text>
-              <Text style={styles.sectionItem}>{`\u2022 ${experiencia}`}</Text>
-              <Text style={styles.sectionDescription}>{description}</Text>
-            </View>
-          )}
-          {stasVisible && (
-            <OfferStats
-              column={colSelected}
-              selectColumn={setColSelected}
-              offerId={Number(job)}
-            />
-          )}
           <View style={styles.applicants}>
             {filteredApplicants.map((item) => (
               <ApplicantCard email={item.email} key={item.id} />
@@ -182,5 +191,17 @@ const styles = StyleSheet.create({
     borderColor: "#1F2269",
     borderWidth: 1,
     width: "100%",
+  },
+  input: {
+    paddingVertical: 8,
+    paddingHorizontal: 10,
+    fontSize: 16,
+    fontFamily: "Roboto_400Regular",
+    color: "#000",
+    backgroundColor: "#fff",
+    borderRadius: 5,
+    borderColor: "#1F2269",
+    borderWidth: 0.5,
+    textAlignVertical: "top",
   },
 });
