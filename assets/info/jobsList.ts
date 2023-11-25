@@ -10,8 +10,22 @@ export type publications = {
   applicant: {
     id: number;
     email: string;
+    column: number;
   }[];
 };
+
+const applicants = [
+  { id: 1, email: "Marisol18@gmail.com", column: 5 },
+  { id: 2, email: "mateogonzález7898@gmail.com", column: 1 },
+  { id: 3, email: "jarol0215@gmail.com", column: 5 },
+  { id: 4, email: "cachicamo.2@gmail.com", column: 5 },
+  { id: 5, email: "martínlópez123@gmail.com", column: 1 },
+  { id: 6, email: "sofíarodríguez456@gmail.com", column: 2 },
+  { id: 7, email: "valentinafernández321@gmail.com", column: 2 },
+  { id: 8, email: "juanmartínez654@gmail.com", column: 3 },
+  { id: 9, email: "camilagarcía987@gmail.com", column: 3 },
+  { id: 10, email: "facundopérez123@gmail.com", column: 4 },
+];
 
 export const dataList: publications[] = [
   {
@@ -24,14 +38,7 @@ export const dataList: publications[] = [
     modalidad: "Remoto",
     description:
       "Estamos buscando un desarrollador Full Stack con experiencia en JavaScript para unirse a nuestro equipo. Serás responsable de diseñar, desarrollar y mantener aplicaciones web utilizando tecnologías como React, Node.js y MongoDB. Trabajarás en un entorno colaborativo y participarás en proyectos emocionantes.",
-    applicant: [
-      { id: 1, email: "Marisol18@gmail.com" },
-      { id: 2, email: "JohnDoe23@gmail.com" },
-      { id: 3, email: "EmilySmith97@yahoo.com" },
-      { id: 4, email: "CarlosGarcia55@hotmail.com" },
-      { id: 5, email: "SophieJohnson22@gmail.com" },
-      { id: 6, email: "DavidBrown89@gmail.com" },
-    ],
+    applicant: applicants,
   },
 
   {
@@ -44,14 +51,7 @@ export const dataList: publications[] = [
     modalidad: "Hibrido",
     description:
       "Estamos buscando un desarrollador Full Stack con experiencia en JavaScript para unirse a nuestro equipo. Serás responsable de diseñar, desarrollar y mantener aplicaciones web utilizando tecnologías como React, Node.js y MongoDB. Trabajarás en un entorno colaborativo y participarás en proyectos emocionantes.",
-    applicant: [
-      { id: 1, email: "Marisol18@gmail.com" },
-      { id: 2, email: "JohnDoe23@gmail.com" },
-      { id: 3, email: "EmilySmith97@yahoo.com" },
-      { id: 4, email: "CarlosGarcia55@hotmail.com" },
-      { id: 5, email: "SophieJohnson22@gmail.com" },
-      { id: 6, email: "DavidBrown89@gmail.com" },
-    ],
+    applicant: applicants,
   },
   {
     id: 3,
@@ -63,14 +63,7 @@ export const dataList: publications[] = [
     modalidad: "Remoto",
     description:
       "Estamos buscando un desarrollador Full Stack con experiencia en JavaScript para unirse a nuestro equipo. Serás responsable de diseñar, desarrollar y mantener aplicaciones web utilizando tecnologías como React, Node.js y MongoDB. Trabajarás en un entorno colaborativo y participarás en proyectos emocionantes.",
-    applicant: [
-      { id: 1, email: "Marisol18@gmail.com" },
-      { id: 2, email: "JohnDoe23@gmail.com" },
-      { id: 3, email: "EmilySmith97@yahoo.com" },
-      { id: 4, email: "CarlosGarcia55@hotmail.com" },
-      { id: 5, email: "SophieJohnson22@gmail.com" },
-      { id: 6, email: "DavidBrown89@gmail.com" },
-    ],
+    applicant: applicants,
   },
   {
     id: 4,
@@ -82,14 +75,7 @@ export const dataList: publications[] = [
     modalidad: "Presencial",
     description:
       "Estamos buscando un desarrollador Full Stack con experiencia en JavaScript para unirse a nuestro equipo. Serás responsable de diseñar, desarrollar y mantener aplicaciones web utilizando tecnologías como React, Node.js y MongoDB. Trabajarás en un entorno colaborativo y participarás en proyectos emocionantes.",
-    applicant: [
-      { id: 1, email: "Marisol18@gmail.com" },
-      { id: 2, email: "JohnDoe23@gmail.com" },
-      { id: 3, email: "EmilySmith97@yahoo.com" },
-      { id: 4, email: "CarlosGarcia55@hotmail.com" },
-      { id: 5, email: "SophieJohnson22@gmail.com" },
-      { id: 6, email: "DavidBrown89@gmail.com" },
-    ],
+    applicant: applicants,
   },
   {
     id: 5,
@@ -101,14 +87,7 @@ export const dataList: publications[] = [
     modalidad: "Presencial",
     description:
       "Estamos buscando un desarrollador Full Stack con experiencia en JavaScript para unirse a nuestro equipo. Serás responsable de diseñar, desarrollar y mantener aplicaciones web utilizando tecnologías como React, Node.js y MongoDB. Trabajarás en un entorno colaborativo y participarás en proyectos emocionantes.",
-    applicant: [
-      { id: 1, email: "Marisol18@gmail.com" },
-      { id: 2, email: "JohnDoe23@gmail.com" },
-      { id: 3, email: "EmilySmith97@yahoo.com" },
-      { id: 4, email: "CarlosGarcia55@hotmail.com" },
-      { id: 5, email: "SophieJohnson22@gmail.com" },
-      { id: 6, email: "DavidBrown89@gmail.com" },
-    ],
+    applicant: applicants,
   },
   {
     id: 6,
@@ -120,13 +99,6 @@ export const dataList: publications[] = [
     modalidad: "Hibrido",
     description:
       "Estamos buscando un desarrollador Full Stack con experiencia en JavaScript para unirse a nuestro equipo. Serás responsable de diseñar, desarrollar y mantener aplicaciones web utilizando tecnologías como React, Node.js y MongoDB. Trabajarás en un entorno colaborativo y participarás en proyectos emocionantes.",
-    applicant: [
-      { id: 1, email: "Marisol18@gmail.com" },
-      { id: 2, email: "JohnDoe23@gmail.com" },
-      { id: 3, email: "EmilySmith97@yahoo.com" },
-      { id: 4, email: "CarlosGarcia55@hotmail.com" },
-      { id: 5, email: "SophieJohnson22@gmail.com" },
-      { id: 6, email: "DavidBrown89@gmail.com" },
-    ],
+    applicant: applicants,
   },
 ];

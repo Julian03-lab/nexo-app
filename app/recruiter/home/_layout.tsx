@@ -56,7 +56,9 @@ const RecruiterLayout = () => {
           tabBarLabel: "Nexo",
           tabBarActiveTintColor: "#03AEB9",
           headerLeft: (props) => (
-            <TouchableOpacity onPress={() => router.back()}>
+            <TouchableOpacity
+              onPress={() => router.push("/recruiter/home/main/notifications")}
+            >
               <NotificationIcon />
             </TouchableOpacity>
           ),

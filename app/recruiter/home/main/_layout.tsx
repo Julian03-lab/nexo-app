@@ -8,6 +8,7 @@ const Layout = () => {
       }}
     >
       <Stack.Screen name="index" />
+      <Stack.Screen name="notifications" />
     </Stack>
   );
 };

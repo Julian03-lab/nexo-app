@@ -8,17 +8,20 @@ import {
   TouchableHighlight,
   View,
 } from "react-native";
-import React, { useRef } from "react";
+import React, { useMemo, useRef } from "react";
 import { useLocalSearchParams } from "expo-router";
 import useUserStore from "../../../services/context";
 import ApplicantCard from "../../../components/recruiter/applicantCard";
 import { IconArrow } from "../../../assets/icons/icons";
+import OfferStats from "../../../components/recruiter/OfferStats";
 
 const Applicant = () => {
   const params = useLocalSearchParams();
   const { job } = params;
   const { user } = useUserStore();
   const [open, setOpen] = React.useState(false);
+  const [colSelected, setColSelected] = React.useState<null | number>(null);
+  const [stasVisible, setStasVisible] = React.useState(false);
   const animatedRotation = useRef(new Animated.Value(0)).current;
 
   const toggleDespliegue = () => {
@@ -44,6 +47,13 @@ const Applicant = () => {
   const { title, experiencia, modalidad, publisher, description, applicant } =
     user.publications.filter((pub) => pub.id === Number(job))[0];
 
+  const filteredApplicants = useMemo(() => {
+    if (colSelected === null) {
+      return applicant;
+    }
+    return applicant.filter((app) => app.column === colSelected);
+  }, [colSelected, applicant]);
+
   return (
     <SafeAreaView style={styles.containter}>
       <ScrollView>
@@ -58,16 +68,13 @@ const Applicant = () => {
                 transform: [{ rotate: rotateInterpolate }],
               }}
             >
-              <IconArrow
-                // style={open && { transform: [{ rotate: "180deg" }] }}
-                fill={"#000000"}
-              />
+              <IconArrow fill={"#000000"} />
             </Animated.View>
           </View>
         </TouchableHighlight>
         <View style={styles.content}>
           <TouchableHighlight
-            onPress={() => {}}
+            onPress={() => setStasVisible(!stasVisible)}
             style={styles.button}
             underlayColor="rgba(31, 34, 105, 0.20)"
           >
@@ -82,6 +89,7 @@ const Applicant = () => {
               Ver estadísticas
             </Text>
           </TouchableHighlight>
+
           {open && (
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>{title}</Text>
@@ -91,8 +99,11 @@ const Applicant = () => {
               <Text style={styles.sectionDescription}>{description}</Text>
             </View>
           )}
+          {stasVisible && (
+            <OfferStats column={colSelected} selectColumn={setColSelected} />
+          )}
           <View style={styles.applicants}>
-            {applicant.map((item) => (
+            {filteredApplicants.map((item) => (
               <ApplicantCard email={item.email} key={item.id} />
             ))}
           </View>
