@@ -90,10 +90,7 @@ const RecruiterLayout = () => {
             fontSize: 20,
           },
           tabBarIcon: (props) => (
-            <CheckIcon
-              fill={props.focused ? "#03AEB9" : "#767575"}
-              {...props}
-            />
+            <SaveIcon fill={props.focused ? "#03AEB9" : "#767575"} {...props} />
           ),
           tabBarLabel: "Prioridades",
           tabBarActiveTintColor: "#03AEB9",
@@ -204,6 +201,30 @@ const RecruiterLayout = () => {
         options={{
           href: null,
           headerTitle: "Estadísticas",
+          headerTitleStyle: {
+            fontFamily: "Roboto_700Bold",
+            color: "#1F2269",
+            fontSize: 20,
+          },
+          headerLeft: (props) => (
+            <TouchableOpacity onPress={() => router.back()}>
+              <BackArrowIcon />
+            </TouchableOpacity>
+          ),
+          headerLeftContainerStyle: {
+            paddingLeft: 12,
+          },
+          headerRight: () => <NexoIcon fill={"#1F2269"} />,
+          headerRightContainerStyle: {
+            paddingRight: 12,
+          },
+        }}
+      />
+      <Tabs.Screen
+        name="edit"
+        options={{
+          href: null,
+          headerTitle: "Editar empleo",
           headerTitleStyle: {
             fontFamily: "Roboto_700Bold",
             color: "#1F2269",

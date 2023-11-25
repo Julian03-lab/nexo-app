@@ -19,9 +19,10 @@ import NoApplicantModal from "./noApplicantsModal";
 
 type OfferCardProps = {
   data: any;
+  isExample?: boolean;
 };
 
-const OfferCard = ({ data }: OfferCardProps) => {
+const OfferCard = ({ data, isExample }: OfferCardProps) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
   const [noApplicant, setNoApplicant] = useState(false);
@@ -59,7 +60,7 @@ const OfferCard = ({ data }: OfferCardProps) => {
         underlayColor="transparent"
         activeOpacity={0.5}
         style={styles.menuIcon}
-        onPress={toggleDespliegue}
+        onPress={!isExample && toggleDespliegue}
       >
         <MenuIcon />
       </TouchableHighlight>
@@ -95,10 +96,21 @@ const OfferCard = ({ data }: OfferCardProps) => {
               <Text style={styles.menuText}>Aspirante</Text>
             </View>
           </TouchableHighlight>
-          <View style={styles.menuItem}>
-            <EditIcon />
-            <Text style={styles.menuText}>Editar</Text>
-          </View>
+          <TouchableHighlight
+            underlayColor="transparent"
+            activeOpacity={0.5}
+            onPress={() =>
+              router.push({
+                pathname: "/recruiter/home/edit",
+                params: { job: data.id },
+              })
+            }
+          >
+            <View style={styles.menuItem}>
+              <EditIcon />
+              <Text style={styles.menuText}>Editar</Text>
+            </View>
+          </TouchableHighlight>
           <TouchableHighlight
             underlayColor="transparent"
             activeOpacity={0.5}
@@ -140,7 +152,7 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
   item: {
-    color: "#1F2269",
+    color: "#000",
     fontSize: 16,
     fontFamily: "Roboto_400Regular",
   },

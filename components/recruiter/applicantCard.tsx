@@ -11,6 +11,7 @@ import {
   DeleteIcon,
   EmailIcon,
   MenuIcon,
+  SaveIcon,
   StatsIcon,
 } from "../../assets/icons/icons";
 import Resume from "./Resume";
@@ -37,13 +38,27 @@ const ApplicantCard = ({ email }: { email: string }) => {
       <View style={styles.card}>
         <View style={styles.container}>
           <Text style={styles.text}>{email}</Text>
-          <TouchableHighlight
-            underlayColor="transparent"
-            activeOpacity={0.5}
-            onPress={toggleDespliegue}
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+            }}
           >
-            <MenuIcon />
-          </TouchableHighlight>
+            <TouchableHighlight
+              underlayColor="transparent"
+              activeOpacity={0.5}
+              onPress={toggleDespliegue}
+            >
+              <SaveIcon />
+            </TouchableHighlight>
+            <TouchableHighlight
+              underlayColor="transparent"
+              activeOpacity={0.5}
+              onPress={toggleDespliegue}
+            >
+              <MenuIcon />
+            </TouchableHighlight>
+          </View>
         </View>
         <Animated.View style={{ height: animatedHeight, overflow: "hidden" }}>
           <View style={{ height: 1, backgroundColor: "#1AD9E5" }} />
