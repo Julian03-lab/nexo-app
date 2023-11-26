@@ -49,13 +49,6 @@ const ApplicantCard = ({ email }: { email: string }) => {
               activeOpacity={0.5}
               onPress={toggleDespliegue}
             >
-              <SaveIcon />
-            </TouchableHighlight>
-            <TouchableHighlight
-              underlayColor="transparent"
-              activeOpacity={0.5}
-              onPress={toggleDespliegue}
-            >
               <MenuIcon />
             </TouchableHighlight>
           </View>

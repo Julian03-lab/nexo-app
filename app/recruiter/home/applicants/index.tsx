@@ -161,8 +161,6 @@ const Applicant = () => {
   const [routes, setRoutes] = React.useState([]);
   const [index, setIndex] = React.useState(0);
 
-  // console.log(routes);
-
   useEffect(() => {
     if (!user || !job) {
       return;

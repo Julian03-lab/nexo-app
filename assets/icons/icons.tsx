@@ -251,6 +251,15 @@ export const SaveIcon = (props) => (
   </Svg>
 );
 
+export const SaveIconFill = (props) => (
+  <Svg width={24} height={24} fill="none" viewBox="0 0 24 24" {...props}>
+    <Path
+      d="M6.16663 5.71498V19.5996L12.1666 17.0227L18.1666 19.5996V5.71498C18.1666 5.25473 18.0125 4.87044 17.7041 4.56211C17.3958 4.25378 17.0115 4.09961 16.5513 4.09961H7.782C7.32175 4.09961 6.93746 4.25378 6.62913 4.56211C6.32079 4.87044 6.16663 5.25473 6.16663 5.71498Z"
+      fill="#1AD9E5"
+    />
+  </Svg>
+);
+
 export const CVIcon = (props) => (
   <Svg width={24} height={24} fill="none" viewBox="0 0 24 24" {...props}>
     <Path

@@ -7,8 +7,6 @@ const senior = () => {
   const { user } = useUserStore();
   const userList = user.trash.filter((item) => item.type === "senior");
 
-  console.log(userList);
-
   return (
     <View style={{ flex: 1 }}>
       <TrashView users={userList} />

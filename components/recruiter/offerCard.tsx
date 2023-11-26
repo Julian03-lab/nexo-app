@@ -11,6 +11,8 @@ import {
   EditIcon,
   MenuIcon,
   PersonIcon,
+  SaveIcon,
+  SaveIconFill,
 } from "../../assets/icons/icons";
 import DeleteModal from "./DeleteModal";
 import { useRouter } from "expo-router";
@@ -44,6 +46,17 @@ const OfferCard = ({ data, isExample }: OfferCardProps) => {
       useNativeDriver: false,
     }).start();
   };
+
+  const makePriority = (id: number) => {
+    const data = user.publications.map((item) => {
+      if (item.id === id) {
+        item.priority = !item.priority;
+      }
+      return item;
+    });
+    setUser({ ...user, publications: data });
+  };
+
   return (
     <View style={styles.container}>
       <DeleteModal
@@ -67,14 +80,16 @@ const OfferCard = ({ data, isExample }: OfferCardProps) => {
       <Text style={styles.title}>{data.title}</Text>
       <Text style={styles.title}>{data.publisher}</Text>
       <View style={{ paddingHorizontal: 10 }}>
-        <Text style={styles.item}>{`\u2022 Vacantes/${data.vacantes}`}</Text>
+        <Text style={styles.item}>{`\u2022 Vacantes / ${data.vacantes}`}</Text>
         <Text
           style={styles.item}
-        >{`\u2022 Aspirantes/${data.aspirantes}`}</Text>
+        >{`\u2022 Aspirantes / ${data.aspirantes}`}</Text>
         <Text
           style={styles.item}
-        >{`\u2022 Experiencia/${data.experiencia}`}</Text>
-        <Text style={styles.item}>{`\u2022 Modalidad/${data.modalidad}`}</Text>
+        >{`\u2022 Experiencia / ${data.experiencia}`}</Text>
+        <Text
+          style={styles.item}
+        >{`\u2022 Modalidad / ${data.modalidad}`}</Text>
       </View>
       <View style={{ height: 1, backgroundColor: "#1AD9E5", marginTop: 10 }} />
       <Animated.View style={{ height: animatedHeight, overflow: "hidden" }}>
@@ -94,6 +109,16 @@ const OfferCard = ({ data, isExample }: OfferCardProps) => {
             <View style={styles.menuItem}>
               <PersonIcon />
               <Text style={styles.menuText}>Aspirante</Text>
+            </View>
+          </TouchableHighlight>
+          <TouchableHighlight
+            underlayColor="transparent"
+            activeOpacity={0.5}
+            onPress={() => makePriority(data.id)}
+          >
+            <View style={styles.menuItem}>
+              {data.priority ? <SaveIconFill /> : <SaveIcon />}
+              <Text style={styles.menuText}>Prioridad</Text>
             </View>
           </TouchableHighlight>
           <TouchableHighlight

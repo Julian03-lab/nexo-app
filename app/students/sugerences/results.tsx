@@ -26,11 +26,8 @@ const Data = () => {
     sugerencias: typeof sugerencesList,
     cards: typeof sugerencesCards
   ) {
-    // Obtener la lista de tags seleccionados del primer array
     const tagsSeleccionados = sugerencias.map((item) => item.title);
-    console.log(tagsSeleccionados);
 
-    // Filtrar los elementos del segundo array cuyos tags coinciden con los seleccionados
     const elementosFiltrados = cards.filter((item) => {
       const tagsCoincidentes = item.tags.filter((tag) =>
         tagsSeleccionados.includes(tag)

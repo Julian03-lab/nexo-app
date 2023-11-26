@@ -32,7 +32,8 @@ const submit = () => {
           experiencia,
           modalidad: modo,
           description: descripcion,
-          applicant: [],
+          applicants: [],
+          priority: false,
         },
       ],
     });

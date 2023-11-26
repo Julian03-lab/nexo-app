@@ -7,6 +7,7 @@ export type publications = {
   experiencia: string | string[];
   modalidad: string | string[];
   description: string | string[];
+  priority: boolean;
   applicants: {
     stepId: number;
     applicantList: {
@@ -42,6 +43,7 @@ export const dataList: publications[] = [
     description:
       "Estamos buscando un desarrollador Full Stack con experiencia en JavaScript para unirse a nuestro equipo. Serás responsable de diseñar, desarrollar y mantener aplicaciones web utilizando tecnologías como React, Node.js y MongoDB. Trabajarás en un entorno colaborativo y participarás en proyectos emocionantes.",
     applicants: [{ stepId: 1, applicantList: applicants }],
+    priority: true,
   },
 
   {
@@ -55,6 +57,7 @@ export const dataList: publications[] = [
     description:
       "Estamos buscando un desarrollador Full Stack con experiencia en JavaScript para unirse a nuestro equipo. Serás responsable de diseñar, desarrollar y mantener aplicaciones web utilizando tecnologías como React, Node.js y MongoDB. Trabajarás en un entorno colaborativo y participarás en proyectos emocionantes.",
     applicants: [{ stepId: 1, applicantList: applicants }],
+    priority: false,
   },
   {
     id: 3,
@@ -67,6 +70,7 @@ export const dataList: publications[] = [
     description:
       "Estamos buscando un desarrollador Full Stack con experiencia en JavaScript para unirse a nuestro equipo. Serás responsable de diseñar, desarrollar y mantener aplicaciones web utilizando tecnologías como React, Node.js y MongoDB. Trabajarás en un entorno colaborativo y participarás en proyectos emocionantes.",
     applicants: [{ stepId: 1, applicantList: applicants }],
+    priority: false,
   },
   {
     id: 4,
@@ -79,6 +83,7 @@ export const dataList: publications[] = [
     description:
       "Estamos buscando un desarrollador Full Stack con experiencia en JavaScript para unirse a nuestro equipo. Serás responsable de diseñar, desarrollar y mantener aplicaciones web utilizando tecnologías como React, Node.js y MongoDB. Trabajarás en un entorno colaborativo y participarás en proyectos emocionantes.",
     applicants: [{ stepId: 1, applicantList: applicants }],
+    priority: false,
   },
   {
     id: 5,
@@ -91,6 +96,7 @@ export const dataList: publications[] = [
     description:
       "Estamos buscando un desarrollador Full Stack con experiencia en JavaScript para unirse a nuestro equipo. Serás responsable de diseñar, desarrollar y mantener aplicaciones web utilizando tecnologías como React, Node.js y MongoDB. Trabajarás en un entorno colaborativo y participarás en proyectos emocionantes.",
     applicants: [{ stepId: 1, applicantList: applicants }],
+    priority: false,
   },
   {
     id: 6,
@@ -103,5 +109,6 @@ export const dataList: publications[] = [
     description:
       "Estamos buscando un desarrollador Full Stack con experiencia en JavaScript para unirse a nuestro equipo. Serás responsable de diseñar, desarrollar y mantener aplicaciones web utilizando tecnologías como React, Node.js y MongoDB. Trabajarás en un entorno colaborativo y participarás en proyectos emocionantes.",
     applicants: [{ stepId: 1, applicantList: applicants }],
+    priority: false,
   },
 ];
