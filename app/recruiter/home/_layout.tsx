@@ -169,24 +169,25 @@ const RecruiterLayout = () => {
         name="applicants"
         options={{
           href: null,
-          headerTitle: "Aspirantes",
-          headerTitleStyle: {
-            fontFamily: "Roboto_700Bold",
-            color: "#1F2269",
-            fontSize: 20,
-          },
-          headerLeft: (props) => (
-            <TouchableOpacity onPress={() => router.back()}>
-              <BackArrowIcon />
-            </TouchableOpacity>
-          ),
-          headerLeftContainerStyle: {
-            paddingLeft: 12,
-          },
-          headerRight: () => <NexoIcon fill={"#1F2269"} />,
-          headerRightContainerStyle: {
-            paddingRight: 12,
-          },
+          headerShown: false,
+          // headerTitle: "Aspirantes",
+          // headerTitleStyle: {
+          //   fontFamily: "Roboto_700Bold",
+          //   color: "#1F2269",
+          //   fontSize: 20,
+          // },
+          // headerLeft: (props) => (
+          //   <TouchableOpacity onPress={() => router.back()}>
+          //     <BackArrowIcon />
+          //   </TouchableOpacity>
+          // ),
+          // headerLeftContainerStyle: {
+          //   paddingLeft: 12,
+          // },
+          // headerRight: () => <NexoIcon fill={"#1F2269"} />,
+          // headerRightContainerStyle: {
+          //   paddingRight: 12,
+          // },
         }}
       />
       <Tabs.Screen
@@ -237,7 +238,7 @@ const RecruiterLayout = () => {
           },
         }}
       />
-      <Tabs.Screen
+      {/* <Tabs.Screen
         name="filterApplicants"
         options={{
           href: null,
@@ -260,7 +261,7 @@ const RecruiterLayout = () => {
             paddingRight: 12,
           },
         }}
-      />
+      /> */}
     </Tabs>
   );
 };

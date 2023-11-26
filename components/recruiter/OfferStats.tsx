@@ -8,9 +8,26 @@ type OfferStatsProps = {
   selectColumn: React.Dispatch<React.SetStateAction<number>>;
   column: number;
   offerId: number;
+  step: number;
+  columnsCount: Record<number, number>;
+  applicants: {
+    stepId: number;
+    applicantList: {
+      id: number;
+      email: string;
+      column: number;
+    }[];
+  };
 };
 
-const OfferStats = ({ column, selectColumn, offerId }: OfferStatsProps) => {
+const OfferStats = ({
+  column,
+  selectColumn,
+  offerId,
+  step,
+  columnsCount,
+  applicants,
+}: OfferStatsProps) => {
   const router = useRouter();
   const handlePress = (columnToSelect: number) => {
     if (column === null || column !== columnToSelect) {
@@ -85,28 +102,34 @@ const OfferStats = ({ column, selectColumn, offerId }: OfferStatsProps) => {
           >
             <View
               style={{
+                alignSelf: "center",
                 alignItems: "center",
-                justifyContent: "center",
                 marginBottom: 4,
+                backgroundColor: "#fff",
+                borderRadius: 100,
+                borderWidth: 1,
+                borderColor:
+                  column === null || column === 1 ? "#FF6584" : "#E3E3E3",
+                elevation: 2,
               }}
             >
               <PersonIconFilled
-                fill={column === null || column === 1 ? "#FF6584" : "#F1F1F1"}
+                fill={column === null || column === 1 ? "#FF6584" : "#E3E3E3"}
               />
               <Text
                 style={{
                   fontSize: 12,
                   fontFamily: "Roboto_700Bold",
                   color:
-                    column === null || column === 1 ? "#FF6584" : "#F1F1F1",
+                    column === null || column === 1 ? "#FF6584" : "#E3E3E3",
                 }}
               >
-                2
+                {columnsCount["1"] || 0}
               </Text>
             </View>
           </TouchableHighlight>
           <StatColumn
-            color={column === null || column === 1 ? "#FF6584" : "#F1F1F1"}
+            color={column === null || column === 1 ? "#FF6584" : "#E3E3E3"}
             percent={20}
           />
           <Text
@@ -127,28 +150,34 @@ const OfferStats = ({ column, selectColumn, offerId }: OfferStatsProps) => {
           >
             <View
               style={{
+                alignSelf: "center",
                 alignItems: "center",
-                justifyContent: "center",
                 marginBottom: 4,
+                backgroundColor: "#fff",
+                borderRadius: 100,
+                borderWidth: 1,
+                borderColor:
+                  column === null || column === 2 ? "#FFE665" : "#E3E3E3",
+                elevation: 2,
               }}
             >
               <PersonIconFilled
-                fill={column === null || column === 2 ? "#FFE665" : "#F1F1F1"}
+                fill={column === null || column === 2 ? "#FFE665" : "#E3E3E3"}
               />
               <Text
                 style={{
                   fontSize: 12,
                   fontFamily: "Roboto_700Bold",
                   color:
-                    column === null || column === 2 ? "#FFE665" : "#F1F1F1",
+                    column === null || column === 2 ? "#FFE665" : "#E3E3E3",
                 }}
               >
-                2
+                {columnsCount["2"] || 0}
               </Text>
             </View>
           </TouchableHighlight>
           <StatColumn
-            color={column === null || column === 2 ? "#FFE665" : "#F1F1F1"}
+            color={column === null || column === 2 ? "#FFE665" : "#E3E3E3"}
             percent={40}
           />
           <Text
@@ -169,28 +198,34 @@ const OfferStats = ({ column, selectColumn, offerId }: OfferStatsProps) => {
           >
             <View
               style={{
+                alignSelf: "center",
                 alignItems: "center",
-                justifyContent: "center",
                 marginBottom: 4,
+                backgroundColor: "#fff",
+                borderRadius: 100,
+                borderWidth: 1,
+                borderColor:
+                  column === null || column === 3 ? "#BEED5B" : "#E3E3E3",
+                elevation: 2,
               }}
             >
               <PersonIconFilled
-                fill={column === null || column === 3 ? "#BEED5B" : "#F1F1F1"}
+                fill={column === null || column === 3 ? "#BEED5B" : "#E3E3E3"}
               />
               <Text
                 style={{
                   fontSize: 12,
                   fontFamily: "Roboto_700Bold",
                   color:
-                    column === null || column === 3 ? "#BEED5B" : "#F1F1F1",
+                    column === null || column === 3 ? "#BEED5B" : "#E3E3E3",
                 }}
               >
-                2
+                {columnsCount["3"] || 0}
               </Text>
             </View>
           </TouchableHighlight>
           <StatColumn
-            color={column === null || column === 3 ? "#BEED5B" : "#F1F1F1"}
+            color={column === null || column === 3 ? "#BEED5B" : "#E3E3E3"}
             percent={60}
           />
           <Text
@@ -211,28 +246,34 @@ const OfferStats = ({ column, selectColumn, offerId }: OfferStatsProps) => {
           >
             <View
               style={{
+                alignSelf: "center",
                 alignItems: "center",
-                justifyContent: "center",
                 marginBottom: 4,
+                backgroundColor: "#fff",
+                borderRadius: 100,
+                borderWidth: 1,
+                borderColor:
+                  column === null || column === 4 ? "#5BEDB0" : "#E3E3E3",
+                elevation: 2,
               }}
             >
               <PersonIconFilled
-                fill={column === null || column === 4 ? "#5BEDB0" : "#F1F1F1"}
+                fill={column === null || column === 4 ? "#5BEDB0" : "#E3E3E3"}
               />
               <Text
                 style={{
                   fontSize: 12,
                   fontFamily: "Roboto_700Bold",
                   color:
-                    column === null || column === 4 ? "#5BEDB0" : "#F1F1F1",
+                    column === null || column === 4 ? "#5BEDB0" : "#E3E3E3",
                 }}
               >
-                1
+                {columnsCount["4"] || 0}
               </Text>
             </View>
           </TouchableHighlight>
           <StatColumn
-            color={column === null || column === 4 ? "#5BEDB0" : "#F1F1F1"}
+            color={column === null || column === 4 ? "#5BEDB0" : "#E3E3E3"}
             percent={80}
           />
           <Text
@@ -253,28 +294,34 @@ const OfferStats = ({ column, selectColumn, offerId }: OfferStatsProps) => {
           >
             <View
               style={{
+                alignSelf: "center",
                 alignItems: "center",
-                justifyContent: "center",
                 marginBottom: 4,
+                backgroundColor: "#fff",
+                borderRadius: 100,
+                borderWidth: 1,
+                borderColor:
+                  column === null || column === 5 ? "#5BE4ED" : "#E3E3E3",
+                elevation: 2,
               }}
             >
               <PersonIconFilled
-                fill={column === null || column === 5 ? "#5BE4ED" : "#F1F1F1"}
+                fill={column === null || column === 5 ? "#5BE4ED" : "#E3E3E3"}
               />
               <Text
                 style={{
                   fontSize: 12,
                   fontFamily: "Roboto_700Bold",
                   color:
-                    column === null || column === 5 ? "#5BE4ED" : "#F1F1F1",
+                    column === null || column === 5 ? "#5BE4ED" : "#E3E3E3",
                 }}
               >
-                3
+                {columnsCount["5"] || 0}
               </Text>
             </View>
           </TouchableHighlight>
           <StatColumn
-            color={column === null || column === 5 ? "#5BE4ED" : "#F1F1F1"}
+            color={column === null || column === 5 ? "#5BE4ED" : "#E3E3E3"}
             percent={100}
             end
           />
@@ -289,29 +336,31 @@ const OfferStats = ({ column, selectColumn, offerId }: OfferStatsProps) => {
           </Text>
         </View>
       </View>
-      {column && (
-        <TouchableHighlight
-          onPress={() =>
-            router.push({
-              pathname: "/recruiter/home/filterApplicants",
-              params: { column, offerId },
-            })
-          }
-          style={styles.button}
-          underlayColor="rgba(31, 34, 105, 0.20)"
-        >
-          <Text
-            style={{
-              color: "#1F2269",
-              textAlign: "center",
-              fontSize: 16,
-              fontFamily: "Roboto_500Medium",
-            }}
+      {column &&
+        columnsCount[column] &&
+        applicants.applicantList.length > 2 && (
+          <TouchableHighlight
+            onPress={() =>
+              router.push({
+                pathname: "/recruiter/home/applicants/filterApplicants",
+                params: { column, offerId, step },
+              })
+            }
+            style={styles.button}
+            underlayColor="rgba(31, 34, 105, 0.20)"
           >
-            Filtrar
-          </Text>
-        </TouchableHighlight>
-      )}
+            <Text
+              style={{
+                color: "#1F2269",
+                textAlign: "center",
+                fontSize: 16,
+                fontFamily: "Roboto_500Medium",
+              }}
+            >
+              Filtrar
+            </Text>
+          </TouchableHighlight>
+        )}
     </>
   );
 };

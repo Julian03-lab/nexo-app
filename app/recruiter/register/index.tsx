@@ -25,6 +25,12 @@ const index = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [passwordVisible2, setPasswordVisible2] = useState(false);
   const [isChecked, setChecked] = useState(false);
+
+  const validatePassword = (password: string) => {
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-+]).{8,}$/;
+    return regex.test(password);
+  };
+
   return (
     <SafeAreaView
       style={{

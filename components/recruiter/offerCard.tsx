@@ -83,7 +83,7 @@ const OfferCard = ({ data, isExample }: OfferCardProps) => {
             underlayColor="transparent"
             activeOpacity={0.5}
             onPress={() =>
-              data.applicant.length > 0
+              data.applicants[0].applicantList.length > 0
                 ? router.push({
                     pathname: "/recruiter/home/applicants",
                     params: { job: data.id },
