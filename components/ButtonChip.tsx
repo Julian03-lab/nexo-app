@@ -6,16 +6,30 @@ const ButtonChip = ({
   handleClick,
   id,
   selected,
+  color,
 }: {
   text: string;
-  handleClick?: (id: number) => void;
-  id?: number;
+  handleClick?: (id: number | string) => void;
+  id?: number | string;
   selected: boolean;
+  color?: string;
 }) => {
   return (
     <TouchableHighlight
       disabled={!handleClick}
-      style={selected ? styles.selected : styles.container}
+      style={
+        selected
+          ? {
+              paddingHorizontal: 10,
+              paddingVertical: 5,
+              alignItems: "center",
+              borderRadius: 100,
+              backgroundColor: color || "#E0A6FA",
+              borderColor: color || "#E0A6FA",
+              borderWidth: 1,
+            }
+          : styles.container
+      }
       onPress={() => handleClick && handleClick(id)}
       activeOpacity={0.9}
       underlayColor={"#BCBABA"}
@@ -36,15 +50,6 @@ const styles = StyleSheet.create({
     borderColor: "#BCBABA",
     borderWidth: 1,
     backgroundColor: "#fff",
-  },
-  selected: {
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    alignItems: "center",
-    borderRadius: 100,
-    backgroundColor: "#E0A6FA",
-    borderColor: "#E0A6FA",
-    borderWidth: 1,
   },
   text: {
     color: "#000",

@@ -4,7 +4,6 @@ import {
   View,
   ScrollView,
   TouchableHighlight,
-  Button,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { Image } from "expo-image";
@@ -45,10 +44,6 @@ const SelectorPage = () => {
   return (
     <SafeAreaView style={{ paddingTop: 12 }}>
       <ScrollView>
-        <Button
-          onPress={updateViewedOnboarding}
-          title="Delete viewedOnboarding"
-        />
         <TouchableHighlight
           onPress={() =>
             router.push(
@@ -72,21 +67,23 @@ const SelectorPage = () => {
             />
           </View>
         </TouchableHighlight>
-        <View style={styles.section}>
-          <LinearGradient
-            colors={["rgba(255, 229, 0, 0.40)", "rgba(255, 229, 0, 0.40)"]}
-            style={styles.gradient}
-          />
-          <Text style={styles.textStyles}>Empleos</Text>
-          <Image
-            source={require("../assets/images/empleos-image.png")}
-            style={{
-              width: "100%",
-              height: 280,
-            }}
-            contentFit="cover"
-          />
-        </View>
+        <TouchableHighlight onPress={() => router.push("/employements")}>
+          <View style={styles.section}>
+            <LinearGradient
+              colors={["rgba(255, 229, 0, 0.40)", "rgba(255, 229, 0, 0.40)"]}
+              style={styles.gradient}
+            />
+            <Text style={styles.textStyles}>Empleos</Text>
+            <Image
+              source={require("../assets/images/empleos-image.png")}
+              style={{
+                width: "100%",
+                height: 280,
+              }}
+              contentFit="cover"
+            />
+          </View>
+        </TouchableHighlight>
         <TouchableHighlight
           onPress={() =>
             user ? router.push("/recruiter/home") : router.push("/recruiter/")
