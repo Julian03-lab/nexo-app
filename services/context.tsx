@@ -6,6 +6,13 @@ type UserState = {
     email: string;
     name: string;
     publications: publications[];
+    trash: {
+      id: number;
+      job: string;
+      email: string;
+      date: string;
+      type: string;
+    }[];
   };
   setUser: (user: UserState["user"]) => void;
 };

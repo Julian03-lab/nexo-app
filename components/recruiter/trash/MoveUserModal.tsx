@@ -1,47 +1,40 @@
+import React, { useState } from "react";
 import {
+  View,
+  Text,
+  Button,
   Modal,
   StyleSheet,
-  Text,
-  TouchableHighlight,
   TouchableOpacity,
   TouchableWithoutFeedback,
-  View,
+  TouchableHighlight,
 } from "react-native";
-import { DeleteIcon } from "../../assets/icons/icons";
-import { useState } from "react";
+import { DeleteIcon, MoveTrashIcon } from "../../../assets/icons/icons";
 
-const DeleteModal = ({
+const MoveUserModal = ({
   modalVisible,
   setModalVisible,
   callback,
-  id,
-  aspirant,
-}: {
-  modalVisible: boolean;
-  setModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
-  callback: any;
-  id: number;
-  aspirant?: boolean;
+  email,
+  type,
 }) => {
   const [eliminado, setEliminado] = useState(false);
+  const [to, setTo] = useState("");
 
   const handleDelete = () => {
     if (!eliminado) {
-      setModalVisible(!modalVisible);
+      setModalVisible(false);
       return;
     }
 
-    callback(id);
-    setEliminado(false);
-    setModalVisible(!modalVisible);
+    callback(to);
+    setModalVisible(false);
   };
-
   return (
     <Modal
+      visible={modalVisible}
       animationType="fade"
       transparent={true}
-      visible={modalVisible}
-      statusBarTranslucent={true}
       onRequestClose={handleDelete}
     >
       <TouchableOpacity
@@ -52,33 +45,15 @@ const DeleteModal = ({
         <TouchableWithoutFeedback>
           <View style={styles.modalView}>
             <View style={styles.icon}>
-              <DeleteIcon fill={"#FF6363"} width={52} height={52} />
+              <MoveTrashIcon fill={"#FF6363"} width={52} height={52} />
             </View>
             {!eliminado ? (
               <>
-                <Text style={styles.modalTitle}>
-                  {aspirant
-                    ? "¿Estas seguro de que quieres eliminar este aspirante?"
-                    : "¿Estas seguro de que quieres eliminar este empleo?"}
-                </Text>
+                <Text style={styles.modalTitle}>Mover a papelera</Text>
                 <TouchableHighlight
-                  onPress={() => setModalVisible(!modalVisible)}
-                  style={styles.firstButton}
-                  underlayColor="rgba(31, 34, 105, 0.50)"
-                >
-                  <Text
-                    style={{
-                      color: "#fff",
-                      textAlign: "center",
-                      fontSize: 16,
-                      fontFamily: "Roboto_500Medium",
-                    }}
-                  >
-                    Volver
-                  </Text>
-                </TouchableHighlight>
-                <TouchableHighlight
+                  disabled={type === "junior"}
                   onPress={() => {
+                    setTo("junior");
                     setEliminado(true);
                   }}
                   style={styles.secondButton}
@@ -92,15 +67,53 @@ const DeleteModal = ({
                       fontFamily: "Roboto_500Medium",
                     }}
                   >
-                    Eliminar
+                    Junior
+                  </Text>
+                </TouchableHighlight>
+                <TouchableHighlight
+                  disabled={type === "semisenior"}
+                  onPress={() => {
+                    setTo("semisenior");
+                    setEliminado(true);
+                  }}
+                  style={styles.secondButton}
+                  underlayColor="rgba(31, 34, 105, 0.20)"
+                >
+                  <Text
+                    style={{
+                      color: "#FF6363",
+                      textAlign: "center",
+                      fontSize: 16,
+                      fontFamily: "Roboto_500Medium",
+                    }}
+                  >
+                    Semi-Senior
+                  </Text>
+                </TouchableHighlight>
+                <TouchableHighlight
+                  disabled={type === "senior"}
+                  onPress={() => {
+                    setTo("senior");
+                    setEliminado(true);
+                  }}
+                  style={styles.secondButton}
+                  underlayColor="rgba(31, 34, 105, 0.20)"
+                >
+                  <Text
+                    style={{
+                      color: "#FF6363",
+                      textAlign: "center",
+                      fontSize: 16,
+                      fontFamily: "Roboto_500Medium",
+                    }}
+                  >
+                    Senior
                   </Text>
                 </TouchableHighlight>
               </>
             ) : (
               <Text style={styles.eliminatedText}>
-                {aspirant
-                  ? "El aspirante se elimino con éxito"
-                  : "El empleo fue eliminado"}
+                Se movio con exito a {email}
               </Text>
             )}
           </View>
@@ -109,8 +122,6 @@ const DeleteModal = ({
     </Modal>
   );
 };
-
-export default DeleteModal;
 
 const styles = StyleSheet.create({
   centeredView: {
@@ -172,3 +183,5 @@ const styles = StyleSheet.create({
     marginVertical: 34,
   },
 });
+
+export default MoveUserModal;

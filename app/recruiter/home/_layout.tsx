@@ -105,12 +105,7 @@ const RecruiterLayout = () => {
         name="trash"
         options={{
           href: "/recruiter/home/trash",
-          headerTitle: "Papelera",
-          headerTitleStyle: {
-            fontFamily: "Roboto_700Bold",
-            color: "#1F2269",
-            fontSize: 20,
-          },
+          headerShown: false,
           tabBarIcon: (props) => (
             <DeleteIcon
               fill={props.focused ? "#03AEB9" : "#767575"}
@@ -170,24 +165,6 @@ const RecruiterLayout = () => {
         options={{
           href: null,
           headerShown: false,
-          // headerTitle: "Aspirantes",
-          // headerTitleStyle: {
-          //   fontFamily: "Roboto_700Bold",
-          //   color: "#1F2269",
-          //   fontSize: 20,
-          // },
-          // headerLeft: (props) => (
-          //   <TouchableOpacity onPress={() => router.back()}>
-          //     <BackArrowIcon />
-          //   </TouchableOpacity>
-          // ),
-          // headerLeftContainerStyle: {
-          //   paddingLeft: 12,
-          // },
-          // headerRight: () => <NexoIcon fill={"#1F2269"} />,
-          // headerRightContainerStyle: {
-          //   paddingRight: 12,
-          // },
         }}
       />
       <Tabs.Screen

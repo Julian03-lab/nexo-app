@@ -19,6 +19,7 @@ import {
 import { Link, useRouter } from "expo-router";
 import useUserStore from "../../../services/context";
 import { dataList } from "../../../assets/info/jobsList";
+import { trashList } from "../../../assets/info/trashList";
 
 const login = () => {
   const router = useRouter();
@@ -86,6 +87,10 @@ const login = () => {
           : "Bruno Ortiz",
       publications:
         email.toLocaleLowerCase() === "bruno.ortiz@example.com" ? dataList : [],
+      trash:
+        email.toLocaleLowerCase() === "bruno.ortiz@example.com"
+          ? trashList
+          : [],
     });
 
     router.replace("/recruiter/home");

@@ -8,20 +8,39 @@ import {
 import React, { useRef, useState } from "react";
 import {
   CVIcon,
+  DeleteForeverIcon,
   DeleteIcon,
   EmailIcon,
   MenuIcon,
   SaveIcon,
   StatsIcon,
-} from "../../assets/icons/icons";
-import Resume from "./Resume";
+} from "../../../assets/icons/icons";
+import Resume from "../Resume";
 import { useRouter } from "expo-router";
+import useUserStore from "../../../services/context";
+import MoveUserModal from "./MoveUserModal";
+import DeleteModal from "../DeleteModal";
 
-const ApplicantCard = ({ email }: { email: string }) => {
+const TrashApplicantCard = ({
+  email,
+  date,
+  job,
+  id,
+  type,
+}: {
+  email: string;
+  date: string;
+  job: string;
+  id: number;
+  type: string;
+}) => {
   const animatedHeight = useRef(new Animated.Value(0)).current;
   const [menuOpen, setMenuOpen] = useState(false);
   const [resumeOpen, setResumeOpen] = useState(false);
   const router = useRouter();
+  const { setUser, user } = useUserStore();
+  const [deleteModal, setDeleteModal] = useState(false);
+  const [moveModal, setMoveModal] = useState(false);
 
   const toggleDespliegue = () => {
     setMenuOpen(!menuOpen);
@@ -33,24 +52,68 @@ const ApplicantCard = ({ email }: { email: string }) => {
       useNativeDriver: false,
     }).start();
   };
+
+  const moveUser = (to: string) => {
+    const newUser = user.trash.filter((item) => item.id !== id);
+    const newTrash = newUser.concat({
+      id,
+      job,
+      email,
+      date,
+      type: to,
+    });
+
+    setUser({
+      ...user,
+      trash: newTrash,
+    });
+  };
+
+  const deleteUser = () => {
+    const newUser = user.trash.filter((item) => item.id !== id);
+
+    setUser({
+      ...user,
+      trash: newUser,
+    });
+  };
+
   return (
     <>
+      <MoveUserModal
+        type={type}
+        modalVisible={moveModal}
+        setModalVisible={setMoveModal}
+        callback={moveUser}
+        email={email}
+      />
+      <DeleteModal
+        callback={deleteUser}
+        id={id}
+        modalVisible={deleteModal}
+        setModalVisible={setDeleteModal}
+        aspirant
+      />
       <View style={styles.card}>
         <View style={styles.container}>
-          <Text style={styles.text}>{email}</Text>
+          <View
+            style={{
+              flexDirection: "column",
+              gap: 5,
+              width: "95%",
+            }}
+          >
+            <Text style={styles.text}>{job}</Text>
+            <Text style={styles.text}>{email}</Text>
+            <Text style={styles.text}>{date}</Text>
+          </View>
           <View
             style={{
               flexDirection: "row",
               alignItems: "center",
+              alignSelf: "flex-start",
             }}
           >
-            <TouchableHighlight
-              underlayColor="transparent"
-              activeOpacity={0.5}
-              onPress={toggleDespliegue}
-            >
-              <SaveIcon />
-            </TouchableHighlight>
             <TouchableHighlight
               underlayColor="transparent"
               activeOpacity={0.5}
@@ -61,7 +124,7 @@ const ApplicantCard = ({ email }: { email: string }) => {
           </View>
         </View>
         <Animated.View style={{ height: animatedHeight, overflow: "hidden" }}>
-          <View style={{ height: 1, backgroundColor: "#1AD9E5" }} />
+          <View style={{ height: 1, backgroundColor: "#FF6584" }} />
           <View style={styles.menu}>
             <TouchableHighlight
               underlayColor="transparent"
@@ -69,11 +132,11 @@ const ApplicantCard = ({ email }: { email: string }) => {
               onPress={() => setResumeOpen(!resumeOpen)}
             >
               <View style={styles.menuItem}>
-                <CVIcon fill={resumeOpen && "#03AEB9"} />
+                <CVIcon fill={resumeOpen && "#FF6584"} />
                 <Text
                   style={{
                     ...styles.menuText,
-                    color: resumeOpen ? "#03AEB9" : "#767575",
+                    color: resumeOpen ? "#FF6584" : "#767575",
                   }}
                 >
                   CV
@@ -97,11 +160,21 @@ const ApplicantCard = ({ email }: { email: string }) => {
             <TouchableHighlight
               underlayColor="transparent"
               activeOpacity={0.5}
-              // onPress={() => setDeleteModal(!deleteModal)}
+              onPress={() => setMoveModal(!moveModal)}
             >
               <View style={styles.menuItem}>
                 <DeleteIcon />
                 <Text style={styles.menuText}>Mover</Text>
+              </View>
+            </TouchableHighlight>
+            <TouchableHighlight
+              underlayColor="transparent"
+              activeOpacity={0.5}
+              onPress={() => setDeleteModal(!moveModal)}
+            >
+              <View style={styles.menuItem}>
+                <DeleteForeverIcon />
+                <Text style={styles.menuText}>Eliminar</Text>
               </View>
             </TouchableHighlight>
           </View>
@@ -112,7 +185,7 @@ const ApplicantCard = ({ email }: { email: string }) => {
   );
 };
 
-export default ApplicantCard;
+export default TrashApplicantCard;
 
 const styles = StyleSheet.create({
   card: {
@@ -128,9 +201,8 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 16,
-    fontFamily: "Roboto_400Regular",
+    fontFamily: "Roboto_500Medium",
     color: "#1C1B1F",
-    maxWidth: "90%",
   },
   menu: {
     flexDirection: "row",
