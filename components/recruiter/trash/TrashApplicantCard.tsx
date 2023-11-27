@@ -1,5 +1,6 @@
 import {
   Animated,
+  Linking,
   StyleSheet,
   Text,
   TouchableHighlight,
@@ -143,10 +144,20 @@ const TrashApplicantCard = ({
                 </Text>
               </View>
             </TouchableHighlight>
-            <View style={styles.menuItem}>
-              <EmailIcon />
-              <Text style={styles.menuText}>Contactar</Text>
-            </View>
+            <TouchableHighlight
+              underlayColor="transparent"
+              activeOpacity={0.5}
+              onPress={() =>
+                Linking.openURL(
+                  `mailto:${email}?subject=Acerca de la oferta del puesto de ${job} publicada en Nexo`
+                )
+              }
+            >
+              <View style={styles.menuItem}>
+                <EmailIcon />
+                <Text style={styles.menuText}>Contactar</Text>
+              </View>
+            </TouchableHighlight>
             <TouchableHighlight
               underlayColor="transparent"
               activeOpacity={0.5}
