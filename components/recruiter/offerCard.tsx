@@ -57,8 +57,6 @@ const OfferCard = ({ data, isExample }: OfferCardProps) => {
     setUser({ ...user, publications: data });
   };
 
-  console.log("Id offercard: ", data.id);
-
   return (
     <View style={styles.container}>
       <DeleteModal

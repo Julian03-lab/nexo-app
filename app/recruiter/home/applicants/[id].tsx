@@ -143,7 +143,7 @@ const StatsComponent = ({ job, index, user }) => {
           )}
           <View style={styles.applicants}>
             {filteredApplicants.map((item) => (
-              <ApplicantCard email={item.email} key={item.id} />
+              <ApplicantCard email={item.email} key={item.id} job={title} />
             ))}
           </View>
         </View>
@@ -155,7 +155,6 @@ const StatsComponent = ({ job, index, user }) => {
 const Applicant = () => {
   const layout = useWindowDimensions();
   const { id } = useLocalSearchParams();
-  // const { job } = params;
   const { user } = useUserStore();
   console.log(id);
 

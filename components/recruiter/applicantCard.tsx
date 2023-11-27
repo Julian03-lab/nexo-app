@@ -11,17 +11,20 @@ import {
   DeleteIcon,
   EmailIcon,
   MenuIcon,
-  SaveIcon,
   StatsIcon,
 } from "../../assets/icons/icons";
 import Resume from "./Resume";
 import { useRouter } from "expo-router";
+import useUserStore from "../../services/context";
+import MoveUserModal from "./trash/MoveUserModal";
 
-const ApplicantCard = ({ email }: { email: string }) => {
+const ApplicantCard = ({ email, job }: { email: string; job: string }) => {
   const animatedHeight = useRef(new Animated.Value(0)).current;
   const [menuOpen, setMenuOpen] = useState(false);
   const [resumeOpen, setResumeOpen] = useState(false);
   const router = useRouter();
+  const { setUser, user } = useUserStore();
+  const [moveModal, setMoveModal] = useState(false);
 
   const toggleDespliegue = () => {
     setMenuOpen(!menuOpen);
@@ -33,8 +36,39 @@ const ApplicantCard = ({ email }: { email: string }) => {
       useNativeDriver: false,
     }).start();
   };
+
+  const todayDate = new Date().toLocaleDateString("es-ES", {
+    day: "numeric",
+    month: "numeric",
+    year: "2-digit",
+  });
+
+  console.log(todayDate);
+
+  const moveUser = (to: string) => {
+    const newTrash = user.trash.concat({
+      id: user.trash.length + 1,
+      job,
+      email,
+      date: todayDate,
+      type: to,
+    });
+
+    setUser({
+      ...user,
+      trash: newTrash,
+    });
+  };
+
   return (
     <>
+      <MoveUserModal
+        type={""}
+        modalVisible={moveModal}
+        setModalVisible={setMoveModal}
+        callback={moveUser}
+        email={email}
+      />
       <View style={styles.card}>
         <View style={styles.container}>
           <Text style={styles.text}>{email}</Text>
@@ -90,7 +124,7 @@ const ApplicantCard = ({ email }: { email: string }) => {
             <TouchableHighlight
               underlayColor="transparent"
               activeOpacity={0.5}
-              // onPress={() => setDeleteModal(!deleteModal)}
+              onPress={() => setMoveModal(!moveModal)}
             >
               <View style={styles.menuItem}>
                 <DeleteIcon />

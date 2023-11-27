@@ -126,6 +126,9 @@ const TrashView = ({
             </View>
           </Animated.View>
         </View>
+        <Text style={styles.seeDateText}>
+          {value && dayjs(value).format("DD/MM/YY")}
+        </Text>
         {filteredUsers.map((user) => (
           <TrashApplicantCard
             id={user.id}
