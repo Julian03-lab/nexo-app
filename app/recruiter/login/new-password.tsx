@@ -10,11 +10,13 @@ import {
 import React, { useRef, useState } from "react";
 import { NexoIcon } from "../../../assets/icons/nexo-icon";
 import { EyeOff, EyeOn } from "../../../assets/icons/icons";
+import { useRouter } from "expo-router";
 
 const newPassword = () => {
   const passwordRef = useRef(null);
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [passwordVisible2, setPasswordVisible2] = useState(false);
+  const router = useRouter();
 
   return (
     <SafeAreaView
@@ -97,7 +99,7 @@ const newPassword = () => {
         </View>
         <View style={styles.buttonArea}>
           <TouchableHighlight
-            onPress={() => console.log("press")}
+            onPress={() => router.push("/recruiter/login")}
             style={styles.firstButton}
             underlayColor="rgba(31, 34, 105, 0.50)"
           >
