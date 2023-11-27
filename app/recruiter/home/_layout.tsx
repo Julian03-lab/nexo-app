@@ -20,6 +20,7 @@ const RecruiterLayout = () => {
   return (
     <Tabs
       screenOptions={{
+        unmountOnBlur: true,
         headerStyle: {
           backgroundColor: "#8CECF2",
         },

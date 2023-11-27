@@ -57,6 +57,8 @@ const OfferCard = ({ data, isExample }: OfferCardProps) => {
     setUser({ ...user, publications: data });
   };
 
+  console.log("Id offercard: ", data.id);
+
   return (
     <View style={styles.container}>
       <DeleteModal
@@ -99,10 +101,7 @@ const OfferCard = ({ data, isExample }: OfferCardProps) => {
             activeOpacity={0.5}
             onPress={() =>
               data.applicants[0].applicantList.length > 0
-                ? router.push({
-                    pathname: "/recruiter/home/applicants",
-                    params: { job: data.id },
-                  })
+                ? router.push("/recruiter/home/applicants/" + data.id)
                 : setNoApplicant(true)
             }
           >
@@ -114,26 +113,25 @@ const OfferCard = ({ data, isExample }: OfferCardProps) => {
           <TouchableHighlight
             underlayColor="transparent"
             activeOpacity={0.5}
-            onPress={() => makePriority(data.id)}
-          >
-            <View style={styles.menuItem}>
-              {data.priority ? <SaveIconFill /> : <SaveIcon />}
-              <Text style={styles.menuText}>Prioridad</Text>
-            </View>
-          </TouchableHighlight>
-          <TouchableHighlight
-            underlayColor="transparent"
-            activeOpacity={0.5}
             onPress={() =>
               router.push({
-                pathname: "/recruiter/home/edit",
-                params: { job: data.id },
+                pathname: "/recruiter/home/edit/" + data.id,
               })
             }
           >
             <View style={styles.menuItem}>
               <EditIcon />
               <Text style={styles.menuText}>Editar</Text>
+            </View>
+          </TouchableHighlight>
+          <TouchableHighlight
+            underlayColor="transparent"
+            activeOpacity={0.5}
+            onPress={() => makePriority(data.id)}
+          >
+            <View style={styles.menuItem}>
+              {data.priority ? <SaveIconFill /> : <SaveIcon />}
+              <Text style={styles.menuText}>Prioridad</Text>
             </View>
           </TouchableHighlight>
           <TouchableHighlight

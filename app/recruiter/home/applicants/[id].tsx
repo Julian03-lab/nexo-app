@@ -154,20 +154,21 @@ const StatsComponent = ({ job, index, user }) => {
 
 const Applicant = () => {
   const layout = useWindowDimensions();
-  const params = useLocalSearchParams();
-  const { job } = params;
+  const { id } = useLocalSearchParams();
+  // const { job } = params;
   const { user } = useUserStore();
+  console.log(id);
 
   const [routes, setRoutes] = React.useState([]);
   const [index, setIndex] = React.useState(0);
 
   useEffect(() => {
-    if (!user || !job) {
+    if (!user || !id) {
       return;
     }
 
     const { applicants } = user.publications.filter(
-      (pub) => pub.id === Number(job)
+      (pub) => pub.id === Number(id)
     )[0];
 
     const newRoutes = applicants.map((app) => ({
@@ -176,9 +177,9 @@ const Applicant = () => {
     }));
 
     setRoutes(newRoutes);
-  }, [user, job]);
+  }, [user, id]);
 
-  if (!user || !job) {
+  if (!user || !id) {
     return <></>;
   }
 
@@ -186,7 +187,7 @@ const Applicant = () => {
     <TabView
       navigationState={{ index, routes }}
       renderScene={({ route }) => (
-        <StatsComponent job={job} index={index} user={user} />
+        <StatsComponent job={id} index={index} user={user} />
       )}
       onIndexChange={setIndex}
       initialLayout={{ width: layout.width }}

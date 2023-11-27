@@ -27,7 +27,7 @@ const Layout = () => {
       }}
     >
       <Stack.Screen
-        name="index"
+        name="[id]"
         options={{
           headerTitle: "Aspirantes",
         }}

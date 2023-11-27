@@ -5,11 +5,10 @@ import { useLocalSearchParams } from "expo-router";
 import useUserStore from "../../../../services/context";
 
 const index = () => {
-  const params = useLocalSearchParams();
-  const { job } = params;
+  const { id } = useLocalSearchParams();
   const { user } = useUserStore();
 
-  const filterJob = user.publications.filter((item) => item.id === Number(job));
+  const filterJob = user.publications.filter((item) => item.id === Number(id));
 
   const data = filterJob[0];
   const formInfo = {

@@ -5,12 +5,18 @@ type Props = {
   applicants: number;
   jobName: string;
   publisher: string;
+  handlePress: () => void;
 };
 
-const NotificationCard = ({ applicants, jobName, publisher }: Props) => {
+const NotificationCard = ({
+  applicants,
+  jobName,
+  publisher,
+  handlePress,
+}: Props) => {
   return (
     <TouchableHighlight
-      onPress={() => console.log("click")}
+      onPress={handlePress}
       style={{
         borderRadius: 5,
       }}
