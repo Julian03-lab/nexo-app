@@ -44,8 +44,6 @@ const ApplicantCard = ({ email, job }: { email: string; job: string }) => {
     year: "2-digit",
   });
 
-  console.log(todayDate);
-
   const moveUser = (to: string) => {
     const newTrash = user.trash.concat({
       id: user.trash.length + 1,

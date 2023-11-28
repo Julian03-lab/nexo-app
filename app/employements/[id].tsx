@@ -1,4 +1,5 @@
 import {
+  Linking,
   ScrollView,
   StyleSheet,
   Text,
@@ -24,7 +25,11 @@ const jobView = () => {
         <Text style={styles.description}>{job.description}</Text>
         <TouchableHighlight
           style={styles.button}
-          onPress={() => "press"}
+          onPress={() =>
+            Linking.openURL(
+              "https://docs.google.com/forms/d/e/1FAIpQLScKpgnlasdEcBIwH_-vMaxpjjaesrJ1UZaZc7AMyx2rW8OF4g/viewform?usp=sf_link"
+            )
+          }
           underlayColor={"#497E6E"}
         >
           <Text style={styles.buttonText}>Postularme</Text>

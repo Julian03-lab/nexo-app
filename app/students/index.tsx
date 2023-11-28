@@ -1,9 +1,21 @@
-import { StyleSheet, SafeAreaView, View, Text, ScrollView } from "react-native";
+import {
+  StyleSheet,
+  SafeAreaView,
+  View,
+  Text,
+  ScrollView,
+  Button,
+} from "react-native";
 import React from "react";
 import { Image } from "expo-image";
 import ImageSlider from "../../components/home/carousel";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const LoginPage = () => {
+  const deleteAsync = async () => {
+    await AsyncStorage.removeItem("@viewedOnboarding");
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
@@ -17,6 +29,7 @@ const LoginPage = () => {
           contentPosition={"top"}
         />
         <View style={styles.textContainer}>
+          <Button title="Go to Home" onPress={deleteAsync} />
           <Text style={styles.title}>¡¡Da el primer paso!!</Text>
           <Text style={styles.subtitle}>
             Revisa cada una de las opciones que tenemos para vos

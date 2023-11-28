@@ -98,7 +98,7 @@ const index = () => {
                 fontFamily: "Roboto_400Regular",
                 fontSize: 16,
               }}
-              placeholderTextColor="rgba(31, 34, 105, 0.50"
+              placeholderTextColor="rgba(31, 34, 105, 0.50)"
               value={query}
               onChangeText={(text) => setQuery(text)}
             />

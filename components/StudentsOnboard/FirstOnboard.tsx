@@ -1,10 +1,12 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Dimensions, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import {
   ConffetiFirst,
   FirstOnboardDraw,
 } from "../../assets/images/undraw/onboardingDraws";
 import { NexoIcon } from "../../assets/icons/nexo-icon";
+
+const { width } = Dimensions.get("window");
 
 const FirstOnboard = () => {
   return (
@@ -42,6 +44,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#BBA2DA",
     alignItems: "center",
+    width: width,
   },
   title: {
     fontSize: 24,
@@ -55,13 +58,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 57,
     width: "100%",
     alignItems: "center",
-    // flex: 1,
   },
   footerText: {
     fontSize: 20,
     fontFamily: "Roboto_500Medium",
     color: "#1F2269",
     textAlign: "center",
-    width: 246,
   },
 });

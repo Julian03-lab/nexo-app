@@ -156,7 +156,6 @@ const Applicant = () => {
   const layout = useWindowDimensions();
   const { id } = useLocalSearchParams();
   const { user } = useUserStore();
-  console.log(id);
 
   const [routes, setRoutes] = React.useState([]);
   const [index, setIndex] = React.useState(0);
