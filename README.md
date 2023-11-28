@@ -3,12 +3,11 @@
 ## 🚀 How to use
 
 ```sh
-npx create-expo-app -e with-router
+npm run comenzar
 ```
 
-## 📝 Notes
-
-- [Expo Router: Docs](https://expo.github.io/router)
-- [Expo Router: Repo](https://github.com/expo/router)
+## Images of the app
+![Nexo Seccion Empleados](assets/app-gifs/EmpleadosNexo.gif)
+![Nexo Seccion Reclutador](assets/app-gifs/ReclutadorNexo.gif)
 
 
